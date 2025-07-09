@@ -1,9 +1,9 @@
 .cursor-aura{
   position: fixed;
-  width: 32px;
-  height: 32px;
-  margin-left: -16px; /* center on cursor */
-  margin-top: -16px;
+  width: 18px;
+  height: 18px;
+  margin-left: -9px; /* center on cursor */
+  margin-top: -9px;
   pointer-events: none;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(115,110,254,0.25) 0%, rgba(115,110,254,0) 70%);

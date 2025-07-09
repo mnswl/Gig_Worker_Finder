@@ -1,7 +1,7 @@
 .hero {
-  background: linear-gradient(135deg, #5EFCE8 0%, #736EFE 100%);
-  background-size: 400% 400%;
-  animation: gradientShift 12s ease infinite;
+  background: linear-gradient(90deg, #5EFCE8 0%, #736EFE 50%, #8C7EFF 100%) !important;
+  background-size: 300% 300% !important;
+  animation: gradientShift 32s ease-in-out infinite !important;
   color: #fff;
   padding: 80px 0;
   position: relative;

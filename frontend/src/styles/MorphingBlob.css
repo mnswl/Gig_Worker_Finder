@@ -1,0 +1,7 @@
+.blob-bg{
+  width: 160vmin;
+  height: 160vmin;
+  pointer-events:none;
+  z-index:0;
+  filter: blur(40px);
+}

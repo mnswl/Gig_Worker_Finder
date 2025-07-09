@@ -1,0 +1,60 @@
+.register-wrapper {
+  max-width: 420px;
+  width: 100%;
+  margin: 60px auto;
+  padding: 0 15px;
+  text-align: center;
+}
+
+.register-logo {
+  height: 48px;
+  margin-bottom: 8px;
+}
+
+.register-divider {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0;
+  color: #888;
+  font-size: 0.875rem;
+}
+.register-divider::before,
+.register-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid currentColor;
+}
+.register-divider::before {
+  margin-right: .75rem;
+}
+.register-divider::after {
+  margin-left: .75rem;
+}
+
+/* Input borders */
+.register-wrapper input.form-control,
+.register-wrapper select.form-select {
+  border: 1px solid #000;
+}
+.register-wrapper input.form-control:focus,
+.register-wrapper select.form-select:focus {
+  border-color: #000;
+  box-shadow: 0 0 0 0.15rem rgba(0,0,0,.15);
+}
+
+/* Dark mode tweaks */
+body.dark .register-wrapper input.form-control,
+body.dark .register-wrapper select.form-select {
+  border-color: #fff;
+  background-color:#222;
+  color:#f8f9fa;
+}
+body.dark .register-wrapper input.form-control:focus,
+body.dark .register-wrapper select.form-select:focus {
+  border-color: #fff;
+  box-shadow: 0 0 0 0.15rem rgba(255,255,255,.25);
+}
+
+body.dark .register-divider { color: #666; }
+body.dark .register-divider::before,
+body.dark .register-divider::after { border-color: #444; }

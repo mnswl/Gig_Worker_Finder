@@ -1,0 +1,30 @@
+.profile-header {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.profile-avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.profile-tabs .nav-link {
+  color: #555;
+  font-weight: 500;
+}
+
+.profile-tabs .nav-link.active {
+  border-bottom: 3px solid #736EFE;
+  color: #000;
+}
+
+.job-card, .notification-item, .message-item {
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+}

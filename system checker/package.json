@@ -1,0 +1,13 @@
+{
+  "name": "gwf-system-checker",
+  "version": "1.0.0",
+  "description": "Local environment and dependency checker for Gig Worker Finder stack",
+  "main": "index.js",
+  "scripts": {
+    "check": "node index.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "mongoose": "^7.8.1"
+  }
+}

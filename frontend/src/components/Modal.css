@@ -1,0 +1,49 @@
+/* Modal component styles */
+
+.gwf-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050; /* Above most Bootstrap elements */
+}
+
+.gwf-modal {
+  background: #fff;
+  max-width: 600px;
+  width: 90%;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  animation: gwf-modal-fade-in 0.25s ease-out;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.gwf-modal-header {
+  border-bottom: 1px solid #dee2e6;
+  padding-bottom: 0.5rem;
+}
+
+/* Fade in keyframes */
+@keyframes gwf-modal-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Small screens full height modal adjustments */
+@media (max-width: 576px) {
+  .gwf-modal {
+    max-width: 95%;
+    height: 100vh;
+    border-radius: 0;
+  }
+}

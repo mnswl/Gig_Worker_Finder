@@ -1,0 +1,193 @@
+.hero {
+  background: linear-gradient(135deg, #5EFCE8 0%, #736EFE 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 12s ease infinite;
+  color: #fff;
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.hero p {
+  max-width: 420px;
+  font-size: 1.1rem;
+  margin-bottom: 24px;
+}
+
+.hero .join-btn {
+  background: #fff;
+  color: #736EFE;
+  border-radius: 30px;
+  padding: 10px 28px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.hero .join-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+
+  background: #f7f7f7;
+  color: #5b5b5b;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Avatar bubbles */
+.bubble {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  animation: float 8s ease-in-out infinite;
+}
+
+.category-card {
+  transition: transform 0.3s ease;
+}
+.category-card:hover {
+  transform: translateY(-5px);
+}
+
+.story-card img {
+  height: 200px;
+  object-fit: cover;
+}
+
+.story-card:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease;
+}
+
+.pricing-card {
+  transition: transform 0.3s ease;
+}
+.pricing-card:hover {
+  transform: translateY(-5px);
+}
+
+.price {
+  font-size: 2.5rem;
+  color: var(--primary);
+  font-weight: bold;
+}
+
+.faq-card {
+  transition: transform 0.3s ease;
+}
+.faq-card:hover {
+  transform: translateY(-5px);
+}
+
+.contact form {
+  transition: transform 0.3s ease;
+}
+.contact form:hover {
+  transform: translateY(-5px);
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.bubble {
+  animation: float 6s ease-in-out infinite;
+
+  position: absolute;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #fff;
+  z-index: 1;
+}
+
+.bubble img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-inner {
+  position: relative; /* create stacking context */
+  z-index: 2; /* above bubbles */
+  gap: 2rem;
+  padding-left: 2rem;
+}
+
+@media (min-width: 768px) {
+  .hero-inner {
+    padding-left: 3rem;
+  }
+}
+
+.hero-img {
+  max-width: 320px;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Specific positions */
+.b1 { top: 20%; right: 10%; width: 120px; height: 120px; }
+.b2 { top: 60%; right: 5%; width: 80px; height: 80px; }
+.b3 { top: 10%; right: 40%; width: 90px; height: 90px; }
+.b4 { top: 55%; right: 35%; width: 110px; height: 110px; }
+.b5 { top: 25%; right: 60%; width: 70px; height: 70px; }
+
+/* Sections Common */
+.section-title{font-weight:700;font-size:2rem;}
+.icon-circle{width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:50%;}
+
+@keyframes wiggle {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(3deg); }
+  50% { transform: rotate(-3deg); }
+  75% { transform: rotate(2deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.icon-circle:hover {
+  animation: wiggle 0.8s ease-in-out;
+}
+
+/* Features */
+.features .feature-card:hover{transform:translateY(-6px) scale(1.02);transition:all .2s ease;}
+
+/* Steps */
+.how-it-works .step{max-width:260px;margin:0 auto;}
+
+/* Stats */
+.stats h3{font-size:2rem;}
+
+/* Testimonials */
+.testimonial-card{transition:transform .25s ease;}
+.testimonial-card:hover{transform:translateY(-5px) rotateZ(-1deg);}
+
+.testimonial-card{border-left:4px solid #736EFE;position:relative;}
+.testimonial-card:before{content:'"';font-family:serif;font-size:4rem;color:#736EFE;position:absolute;top:-20px;left:-12px;}
+
+/* Footer */
+.site-footer{background:#736EFE;color:#fff;}

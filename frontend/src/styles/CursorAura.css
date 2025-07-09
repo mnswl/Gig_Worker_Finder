@@ -1,0 +1,15 @@
+.cursor-aura{
+  position: fixed;
+  width: 32px;
+  height: 32px;
+  margin-left: -16px; /* center on cursor */
+  margin-top: -16px;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(115,110,254,0.25) 0%, rgba(115,110,254,0) 70%);
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+  z-index: 9999;
+  mix-blend-mode: multiply;
+  backdrop-filter: blur(6px);
+}

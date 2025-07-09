@@ -1,8 +1,9 @@
 import { io } from 'socket.io-client';
+import { API_URL } from './config';
 
 const SOCKET_URL = process.env.NODE_ENV === 'production'
   ? '' // same origin in production (assumes api proxy)
-  : 'http://localhost:5000';
+  : API_URL;
 
 export const socket = io(SOCKET_URL, {
   autoConnect: false,

@@ -7,8 +7,11 @@ import '../styles/Register.css';
 import { countries, currencies } from '../data/options';
 import { getCurrencySymbol } from '../utils/currency';
 import { getCurrencyOfCountry } from '../data/countryCurrency';
+import { API_URL } from '../config';
 
 function Register() {
+  console.log("API_URL:", process.env.REACT_APP_API_URL);
+  
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const [form, setForm] = useState(() => {

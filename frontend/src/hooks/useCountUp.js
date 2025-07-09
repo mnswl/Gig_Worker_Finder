@@ -11,9 +11,6 @@ export default function useCountUp(selector = '.stats h3') {
     const nodes = document.querySelectorAll(selector);
     if (!nodes.length) return;
 
-    // Ensure they start invisible for progressive reveal
-    nodes.forEach(n => (n.style.opacity = 0));
-
     const observer = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
@@ -29,16 +26,9 @@ export default function useCountUp(selector = '.stats h3') {
             const num = parseFloat(match[1].replace(/,/g, ''));
             const suffix = match[2];
 
-            const counter = { val: 0 };
-            animate(counter, {
-              val: num,
-              duration: 1500,
-              easing: 'easeOutCubic',
-              update: () => {
-                node.textContent = Math.round(counter.val).toLocaleString() + suffix;
-                node.style.opacity = 1;
-              }
-            });
+            const counter = { val: num }; // Start from the actual value
+            node.textContent = num.toLocaleString() + suffix;
+            node.style.opacity = 1;
             observer.unobserve(node);
           }
         });

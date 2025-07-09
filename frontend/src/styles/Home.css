@@ -182,6 +182,17 @@
 /* Stats */
 .stats h3{font-size:2rem;}
 
+body.dark .stats {
+  background-color: #23263a !important;
+  color: #e3e6ed !important;
+}
+body.dark .stats h3 {
+  color: #e3e6ed !important;
+}
+body.dark .stats p {
+  color: #bfc0c2 !important;
+}
+
 /* Testimonials */
 .testimonial-card{transition:transform .25s ease;}
 .testimonial-card:hover{transform:translateY(-5px) rotateZ(-1deg);}

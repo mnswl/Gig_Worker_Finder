@@ -105,19 +105,19 @@ function Home() {
         <div className="container">
           <div className="row gy-4">
             <div className="col-6 col-md-3" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
-              <h3 className="fw-bold">10k+</h3>
+              <h3 className="fw-bold">12k+</h3>
               <p className="text-muted mb-0">Gigs Posted</p>
             </div>
             <div className="col-6 col-md-3" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
-              <h3 className="fw-bold">4.5k</h3>
+              <h3 className="fw-bold">5.8k</h3>
               <p className="text-muted mb-0">Active Freelancers</p>
             </div>
             <div className="col-6 col-md-3" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
-              <h3 className="fw-bold">2k+</h3>
+              <h3 className="fw-bold">2.3k+</h3>
               <p className="text-muted mb-0">Clients</p>
             </div>
             <div className="col-6 col-md-3" data-aos="fade-up" data-aos-duration="800" data-aos-delay="500">
-              <h3 className="fw-bold">98%</h3>
+              <h3 className="fw-bold">98.7%</h3>
               <p className="text-muted mb-0">Job Success</p>
             </div>
           </div>

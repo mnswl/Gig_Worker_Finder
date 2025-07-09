@@ -22,6 +22,7 @@ import AdminRegister from './pages/AdminRegister';
 import AdminDashboard from './pages/AdminDashboard';
 import { bounce } from './utils/animations';
 import CursorAura from './components/CursorAura';
+import api from './api';
 
 function Navigation() {
   const location = useLocation();

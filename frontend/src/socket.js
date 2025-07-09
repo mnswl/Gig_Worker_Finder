@@ -2,7 +2,7 @@ import { io } from 'socket.io-client';
 import { API_URL } from './config';
 
 const SOCKET_URL = process.env.NODE_ENV === 'production'
-  ? '' // same origin in production (assumes api proxy)
+  ? window.location.origin // use same origin in production
   : API_URL;
 
 export const socket = io(SOCKET_URL, {

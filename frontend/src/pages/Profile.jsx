@@ -9,6 +9,7 @@ import { countries, currencies } from '../data/options';
 import { getCurrencySymbol } from '../utils/currency';
 import roleDisplay from '../utils/roleDisplay';
 import { getCurrencyOfCountry } from '../data/countryCurrency';
+import _ from 'lodash';
 
 function Profile() {
   const navigate = useNavigate();
@@ -85,7 +86,11 @@ function Profile() {
           setActiveTab('notifications');
         }
         localStorage.setItem('uid', data.id || data._id);
-        setForm({
+        const newUser = { ...data, country: storedCountry, currency: storedCurrency, avatar: storedAvatar };
+        if (!_.isEqual(user, newUser)) {
+          setUser(newUser);
+        }
+        const newForm = {
           username: data.username || '',
           firstName: data.firstName || '',
           lastName: data.lastName || '',
@@ -93,7 +98,10 @@ function Profile() {
           phone: data.phone || '',
           country: storedCountry,
           currency: storedCurrency,
-        });
+        };
+        if (!_.isEqual(form, newForm)) {
+          setForm(newForm);
+        }
         // Jobs or posts depending on role
         if (data.role === 'employer') {
           const res = await api.get('/jobs/me');

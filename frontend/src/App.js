@@ -165,24 +165,27 @@ function Navigation() {
 // Animated page transitions using react-transition-group
 function AnimatedRoutes() {
   const location = useLocation();
+  const nodeRef = useRef(null);
   return (
     <SwitchTransition>
-      <CSSTransition key={location.pathname} classNames="page" timeout={300} unmountOnExit>
-        <Routes location={location}>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/verify" element={<Verify />} />
-          <Route path="/twofactor" element={<TwoFactor />} />
-          <Route path="/terms" element={<Terms />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/chat" element={<Chat />} />
-          <Route path="/admin-register" element={<AdminRegister />} />
-          <Route path="/admin" element={<AdminDashboard />} />
-        </Routes>
+      <CSSTransition key={location.pathname} classNames="page" timeout={300} unmountOnExit nodeRef={nodeRef}>
+        <div ref={nodeRef}>
+          <Routes location={location}>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/verify" element={<Verify />} />
+            <Route path="/twofactor" element={<TwoFactor />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/chat" element={<Chat />} />
+            <Route path="/admin-register" element={<AdminRegister />} />
+            <Route path="/admin" element={<AdminDashboard />} />
+          </Routes>
+        </div>
       </CSSTransition>
     </SwitchTransition>
   );

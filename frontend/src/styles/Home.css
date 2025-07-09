@@ -191,3 +191,215 @@
 
 /* Footer */
 .site-footer{background:#736EFE;color:#fff;}
+
+/* --- Responsive adjustments for hero/banner section --- */
+@media (max-width: 991px) {
+  .hero {
+    padding: 3rem 0.5rem;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .hero-inner {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding-left: 0;
+  }
+  .hero-img {
+    max-width: 220px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .hero .join-btn {
+    width: 100%;
+    max-width: 320px;
+    font-size: 1rem;
+    padding: 10px 0;
+  }
+}
+@media (max-width: 600px) {
+  .hero {
+    padding: 1.5rem 0.2rem;
+  }
+  .hero h1 {
+    font-size: 1.2rem;
+  }
+  .hero p {
+    font-size: 1rem;
+    margin-bottom: 16px;
+  }
+  .hero-img {
+    max-width: 140px;
+  }
+}
+/* End responsive hero/banner adjustments */
+
+/* --- Improved responsive positioning for hero avatar bubbles --- */
+@media (max-width: 991px) {
+  .bubble.b1 { top: 10%; left: 10%; right: auto; width: 60px; height: 60px; }
+  .bubble.b2 { top: 60%; left: 5%; right: auto; width: 44px; height: 44px; }
+  .bubble.b3 { top: 15%; right: 15%; left: auto; width: 50px; height: 50px; }
+  .bubble.b4 { top: 70%; right: 10%; left: auto; width: 54px; height: 54px; }
+  .bubble.b5 { top: 35%; left: 50%; right: auto; width: 38px; height: 38px; transform: translateX(-50%); }
+}
+@media (max-width: 767px) {
+  .bubble.b1 { top: 8%; left: 8%; right: auto; width: 38px; height: 38px; }
+  .bubble.b2 { top: 65%; left: 8%; right: auto; width: 28px; height: 28px; }
+  .bubble.b3 { top: 10%; right: 10%; left: auto; width: 32px; height: 32px; }
+  .bubble.b4 { top: 75%; right: 8%; left: auto; width: 34px; height: 34px; }
+  .bubble.b5 { top: 40%; left: 60%; right: auto; width: 24px; height: 24px; transform: translateX(-50%); }
+}
+@media (max-width: 600px) {
+  .bubble.b1 { top: 6%; left: 6%; right: auto; width: 24px; height: 24px; }
+  .bubble.b2 { top: 70%; left: 6%; right: auto; width: 18px; height: 18px; }
+  .bubble.b3 { top: 8%; right: 8%; left: auto; width: 20px; height: 20px; }
+  .bubble.b4 { top: 80%; right: 6%; left: auto; width: 22px; height: 22px; }
+  .bubble.b5 { top: 45%; left: 70%; right: auto; width: 16px; height: 16px; transform: translateX(-50%); }
+}
+/* End improved responsive hero avatar bubble positioning */
+
+/* --- Larger hero avatar bubbles for all screens --- */
+@media (min-width: 992px) {
+  .bubble.b1 { width: 80px; height: 80px; }
+  .bubble.b2 { width: 60px; height: 60px; }
+  .bubble.b3 { width: 70px; height: 70px; }
+  .bubble.b4 { width: 75px; height: 75px; }
+  .bubble.b5 { width: 50px; height: 50px; }
+}
+@media (max-width: 991px) {
+  .bubble.b1 { width: 90px; height: 90px; }
+  .bubble.b2 { width: 70px; height: 70px; }
+  .bubble.b3 { width: 80px; height: 80px; }
+  .bubble.b4 { width: 85px; height: 85px; }
+  .bubble.b5 { width: 60px; height: 60px; }
+}
+@media (max-width: 767px) {
+  .bubble.b1 { width: 60px; height: 60px; }
+  .bubble.b2 { width: 48px; height: 48px; }
+  .bubble.b3 { width: 54px; height: 54px; }
+  .bubble.b4 { width: 56px; height: 56px; }
+  .bubble.b5 { width: 40px; height: 40px; }
+}
+@media (max-width: 600px) {
+  .bubble.b1 { width: 40px; height: 40px; }
+  .bubble.b2 { width: 32px; height: 32px; }
+  .bubble.b3 { width: 36px; height: 36px; }
+  .bubble.b4 { width: 38px; height: 38px; }
+  .bubble.b5 { width: 28px; height: 28px; }
+}
+/* End larger hero avatar bubbles */
+
+/* --- Prevent hero avatar bubble from overlapping logo --- */
+@media (min-width: 992px) {
+  .bubble.b5 { left: 70%; top: 50%; right: auto; transform: translateX(-50%); }
+}
+@media (max-width: 991px) {
+  .bubble.b5 { left: 75%; top: 55%; right: auto; transform: translateX(-50%); }
+}
+@media (max-width: 767px) {
+  .bubble.b5 { left: 80%; top: 60%; right: auto; transform: translateX(-50%); }
+}
+@media (max-width: 600px) {
+  .bubble.b5 { left: 85%; top: 65%; right: auto; transform: translateX(-50%); }
+}
+/* End prevent logo overlap */
+
+/* --- Balanced hero avatar bubble positions for all screens --- */
+@media (min-width: 992px) {
+  .bubble.b1 { top: 18%; left: 8%; right: auto; }
+  .bubble.b2 { top: 70%; left: 18%; right: auto; }
+  .bubble.b3 { top: 12%; right: 12%; left: auto; }
+  .bubble.b4 { top: 75%; right: 8%; left: auto; }
+  .bubble.b5 { top: 50%; left: 60%; right: auto; transform: translateX(-50%); }
+}
+@media (max-width: 991px) {
+  .bubble.b1 { top: 15%; left: 10%; right: auto; }
+  .bubble.b2 { top: 70%; left: 12%; right: auto; }
+  .bubble.b3 { top: 12%; right: 12%; left: auto; }
+  .bubble.b4 { top: 75%; right: 10%; left: auto; }
+  .bubble.b5 { top: 45%; left: 55%; right: auto; transform: translateX(-50%); }
+}
+@media (max-width: 767px) {
+  .bubble.b1 { top: 12%; left: 8%; right: auto; }
+  .bubble.b2 { top: 75%; left: 10%; right: auto; }
+  .bubble.b3 { top: 10%; right: 10%; left: auto; }
+  .bubble.b4 { top: 80%; right: 8%; left: auto; }
+  .bubble.b5 { top: 50%; left: 60%; right: auto; transform: translateX(-50%); }
+}
+@media (max-width: 600px) {
+  .bubble.b1 { top: 10%; left: 6%; right: auto; }
+  .bubble.b2 { top: 80%; left: 8%; right: auto; }
+  .bubble.b3 { top: 8%; right: 8%; left: auto; }
+  .bubble.b4 { top: 85%; right: 6%; left: auto; }
+  .bubble.b5 { top: 55%; left: 65%; right: auto; transform: translateX(-50%); }
+}
+/* End balanced hero avatar bubble positions */
+
+/* --- Move leftmost hero avatar bubble to right side on desktop --- */
+@media (min-width: 992px) {
+  .bubble.b1 { top: 15%; left: auto; right: 22%; }
+  .bubble.b2 { top: 35%; left: auto; right: 10%; }
+  .bubble.b3 { top: 60%; left: auto; right: 18%; }
+  .bubble.b4 { top: 80%; left: auto; right: 6%; }
+  .bubble.b5 { top: 50%; left: auto; right: 30%; }
+}
+/* End: scatter bubbles on right side (desktop) */
+
+/* --- Precise hero avatar bubble positions for desktop (do not cross the logo) --- */
+@media (min-width: 992px) {
+  .bubble.b1 { top: 10%; left: 18%; right: auto; }    /* Top left, clear of logo */
+  .bubble.b2 { top: 7%; left: 82%; right: auto; }     /* Top right */
+  .bubble.b3 { top: 44%; left: 56%; right: auto; }    /* Center right */
+  .bubble.b4 { top: 68%; left: 78%; right: auto; }    /* Lower right */
+  .bubble.b5 { top: 85%; left: 92%; right: auto; }    /* Bottom right */
+}
+/* End: precise hero avatar bubble positions for desktop (do not cross the logo) */
+
+/* --- Hand-drawn red marks for hero/banner (desktop only, precise per screenshot) --- */
+.hero-mark {
+  position: absolute;
+  z-index: 3;
+  width: 48px;
+  height: 48px;
+  pointer-events: none;
+  opacity: 0.92;
+  animation: markWiggle 2.5s infinite ease-in-out;
+}
+@keyframes markWiggle {
+  0% { transform: rotate(-3deg) scale(1); }
+  20% { transform: rotate(2deg) scale(1.05); }
+  50% { transform: rotate(-2deg) scale(0.98); }
+  80% { transform: rotate(3deg) scale(1.04); }
+  100% { transform: rotate(-3deg) scale(1); }
+}
+@media (min-width: 992px) {
+  .hero-mark.m1 { top: 7%; left: 32%; }
+  .hero-mark.m2 { top: 7%; left: 82%; }
+  .hero-mark.m3 { top: 38%; left: 56%; }
+  .hero-mark.m4 { top: 68%; left: 70%; }
+  .hero-mark.m5 { top: 82%; left: 90%; }
+}
+@media (max-width: 991px) {
+  .hero-mark { display: none; }
+}
+/* End hand-drawn red marks */
+
+/* --- Hero avatar bubble positions: maximum gap, fully scattered on right side --- */
+@media (min-width: 992px) {
+  .bubble.b1 { top: 6%; left: 65%; right: auto; }
+  .bubble.b2 { top: 20%; left: 88%; right: auto; }
+  .bubble.b3 { top: 48%; left: 70%; right: auto; }
+  .bubble.b4 { top: 74%; left: 92%; right: auto; }
+  .bubble.b5 { top: 85%; left: 60%; right: auto; } /* moved up to stay inside banner */
+}
+/* End: hero avatar bubble positions, adjusted for banner bounds */
+
+/* Example avatar image URLs (replace with your own if desired)
+/* These are royalty-free avatars from https://www.pexels.com/search/profile%20photo/ and https://undraw.co/illustrations */
+.bubble.b1 img { content: url('https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&w=80&h=80&fit=crop'); }
+.bubble.b2 img { content: url('https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&w=80&h=80&fit=crop'); }
+.bubble.b3 img { content: url('https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg?auto=compress&w=80&h=80&fit=crop'); }
+.bubble.b4 img { content: url('https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&w=80&h=80&fit=crop'); }
+.bubble.b5 img { content: url('https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&w=80&h=80&fit=crop'); }

@@ -446,6 +446,70 @@ body.dark section:nth-child(even) {
 }
 /* End dark mode even section fix */
 
+/* --- Responsive adjustments for mobile/tablet screens --- */
+@media (max-width: 991px) {
+  .content {
+    max-width: 100%;
+    padding: 1.5rem 0.5rem;
+  }
+  section {
+    padding: 2.5rem 0.5rem;
+  }
+  h1, .hero h1 {
+    font-size: 2.1rem;
+  }
+  .card, .job-card {
+    padding: 1rem;
+    border-radius: var(--radius-md);
+  }
+}
+@media (max-width: 767px) {
+  .content {
+    padding: 1rem 0.25rem;
+  }
+  section {
+    padding: 1.5rem 0.25rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 1rem;
+  }
+  h1, .hero h1 {
+    font-size: 1.5rem;
+  }
+  .hero {
+    padding: 2.5rem 0.5rem;
+    text-align: center;
+  }
+  .hero-inner {
+    flex-direction: column !important;
+    gap: 1rem;
+    padding-left: 0;
+  }
+  .hero-img {
+    max-width: 220px;
+    width: 100%;
+  }
+  .card, .job-card {
+    padding: 0.75rem;
+    border-radius: var(--radius-sm);
+  }
+  .success-stories {
+    flex-direction: column !important;
+    gap: 1rem;
+  }
+}
+@media (max-width: 480px) {
+  .content, section {
+    padding: 0.5rem 0.1rem;
+  }
+  h1, .hero h1 {
+    font-size: 1.1rem;
+  }
+  .card, .job-card {
+    padding: 0.5rem;
+  }
+}
+/* End responsive adjustments */
+
 .btn {
   position: relative;
   overflow: hidden;

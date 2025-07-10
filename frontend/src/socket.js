@@ -10,6 +10,7 @@ const SOCKET_URL =
 export const socket = io(SOCKET_URL, {
   autoConnect: false,
   transports: ['websocket', 'polling'],
+  reconnectionAttempts: 5,
 });
 
 // suppress noisy connect errors in production

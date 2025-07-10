@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import api from '../api';
@@ -10,7 +10,13 @@ import { getCurrencyOfCountry } from '../data/countryCurrency';
 import { API_URL } from '../config';
 
 function Register() {
-  console.log("API_URL:", process.env.REACT_APP_API_URL);
+  useEffect(() => {
+    console.log('=== ENVIRONMENT DEBUG ===');
+    console.log('NODE_ENV:', process.env.NODE_ENV);
+    console.log('REACT_APP_API_URL:', process.env.REACT_APP_API_URL);
+    console.log('All REACT_APP vars:', Object.keys(process.env).filter(key => key.startsWith('REACT_APP')));
+    console.log('========================');
+  }, []);
   
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();

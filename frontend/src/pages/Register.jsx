@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import api from '../api';
-import axios from 'axios';
 import { promptGoogleLogin } from '../googleAuth';
 import '../styles/Register.css';
 import { countries, currencies } from '../data/options';
@@ -43,22 +42,9 @@ function Register() {
   const [showConfirmPwd, setShowConfirmPwd] = useState(false);
 
   const handleGoogle = () => {
-    const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
-    // Google One Tap or button click will supply idToken below
-
     promptGoogleLogin(async (idToken) => {
       try {
-        // Debug API call details
-        console.log('🔍 API Call Debug:');
-        console.log('API_URL variable:', API_URL);
-        console.log('Full URL being called:', `${API_URL}/api/auth/google`);
-
-        const res = await axios.post(`${API_URL}/api/auth/google`, {
-          token: idToken,
-          role: form.role,
-          country: form.country || undefined,
-          currency: form.currency || undefined,
-        });
+        const res = await api.post('/auth/google', { idToken, role: form.role, country: form.country || undefined, currency: form.currency || undefined });
         const user = res.data.user;
         if(user.emailVerified){
           localStorage.setItem('token', res.data.token);

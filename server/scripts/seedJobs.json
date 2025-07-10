@@ -1,0 +1,802 @@
+[
+  {
+    "title": "Front-End React Developer",
+    "description": "Build and maintain responsive React components for a SaaS dashboard. Must know hooks and Tailwind CSS.",
+    "location": "Remote",
+    "pay": 40,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "UI/UX Mobile Designer",
+    "description": "Design polished Figma mock-ups for a health-tracking app and hand off assets to developers.",
+    "location": "Berlin, DE",
+    "pay": 55,
+    "currency": "EUR",
+    "type": "freelance"
+  },
+  {
+    "title": "Social Media Content Writer",
+    "description": "Write engaging captions and carousel posts for Instagram and LinkedIn (4 posts/week).",
+    "location": "Remote",
+    "pay": 120,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "Shopify Store Setup Specialist",
+    "description": "Configure themes, payment gateways and shipping profiles for new DTC brands.",
+    "location": "Toronto, CA",
+    "pay": 45,
+    "currency": "CAD",
+    "type": "freelance"
+  },
+  {
+    "title": "Virtual Executive Assistant",
+    "description": "Manage calendar, inbox triage and travel bookings for a tech CEO in PST timezone.",
+    "location": "Remote",
+    "pay": 25,
+    "currency": "USD",
+    "type": "part-time"
+  },
+  {
+    "title": "Data Entry Clerk",
+    "description": "Transfer survey responses into Airtable; 10k rows per week target.",
+    "location": "Manila, PH",
+    "pay": 300,
+    "currency": "PHP",
+    "type": "gig"
+  },
+  {
+    "title": "WordPress Theme Customizer",
+    "description": "Tweak CSS & PHP of existing themes to match client brand guidelines.",
+    "location": "Remote",
+    "pay": 35,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Video Editor (YouTube)",
+    "description": "Edit 8–10 minute tech reviews, adding motion graphics and royalty-free music.",
+    "location": "Austin, TX",
+    "pay": 400,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Google Ads Campaign Manager",
+    "description": "Plan, launch and optimise PPC campaigns for an e-commerce client.",
+    "location": "Sydney, AU",
+    "pay": 70,
+    "currency": "AUD",
+    "type": "freelance"
+  },
+  {
+    "title": "Python Automation Script Developer",
+    "description": "Write Python scripts that scrape competitor prices and export a CSV daily.",
+    "location": "Remote",
+    "pay": 300,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "Customer Support Chat Agent",
+    "description": "Answer live chat tickets for a SaaS product; must type 50 WPM+ and use Zendesk.",
+    "location": "Dublin, IE",
+    "pay": 22,
+    "currency": "EUR",
+    "type": "part-time"
+  },
+  {
+    "title": "Logo & Brand Identity Designer",
+    "description": "Create a full logo suite, colour palette and typography guidelines for a fintech startup.",
+    "location": "Remote",
+    "pay": 250,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "Facebook Ads Copywriter",
+    "description": "Craft high-converting ad copy and headlines for B2B SaaS campaigns.",
+    "location": "London, UK",
+    "pay": 45,
+    "currency": "GBP",
+    "type": "freelance"
+  },
+  {
+    "title": "Full-Stack MERN Developer",
+    "description": "Build new features and maintain an existing MERN platform; Jest & Cypress testing required.",
+    "location": "New York, NY",
+    "pay": 60,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Bookkeeper (QuickBooks)",
+    "description": "Reconcile monthly transactions and prepare P&L for a US-based agency.",
+    "location": "Remote",
+    "pay": 30,
+    "currency": "USD",
+    "type": "part-time"
+  },
+  {
+    "title": "Podcast Audio Engineer",
+    "description": "Clean up audio, add intro/outro and master levels for a weekly tech podcast.",
+    "location": "Remote",
+    "pay": 200,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "SEO Audit Specialist",
+    "description": "Deliver a technical SEO audit and 3-month roadmap for a Shopify store.",
+    "location": "Remote",
+    "pay": 500,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "React Native App Fixes",
+    "description": "Resolve crash reports and optimise bundle size for an existing React Native app.",
+    "location": "Remote",
+    "pay": 300,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "Illustration for Children’s Book",
+    "description": "Create 12 whimsical full-page illustrations in a watercolor style.",
+    "location": "Paris, FR",
+    "pay": 1500,
+    "currency": "EUR",
+    "type": "freelance"
+  },
+  {
+    "title": "Instagram Reels Creator",
+    "description": "Shoot and edit short lifestyle Reels to grow a travel influencer’s account.",
+    "location": "Remote",
+    "pay": 75,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "Canva Presentation Designer",
+    "description": "Design visually engaging slide decks in Canva for webinars and investor pitches.",
+    "location": "Remote",
+    "pay": 30,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "IT Help-Desk Technician",
+    "description": "Provide tier-1 support via email & chat; Windows and macOS troubleshooting.",
+    "location": "Remote",
+    "pay": 28,
+    "currency": "USD",
+    "type": "part-time"
+  },
+  {
+    "title": "Salesforce Admin",
+    "description": "Maintain objects, reports and workflows for a mid-size sales team.",
+    "location": "Chicago, IL",
+    "pay": 55,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Kotlin Android Developer",
+    "description": "Implement new screens and unit tests in an existing Android banking app.",
+    "location": "Remote",
+    "pay": 50,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Proofreader (Academic)",
+    "description": "Proof and format APA-style journal articles; turnaround 48h.",
+    "location": "Remote",
+    "pay": 0.03,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "Shopify Product Photographer",
+    "description": "Shoot and retouch white-background product photos for an apparel brand.",
+    "location": "Los Angeles, CA",
+    "pay": 150,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "HubSpot Email Template Coder",
+    "description": "Code responsive HubSpot email modules that render perfectly in Outlook.",
+    "location": "Remote",
+    "pay": 220,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "Voice-Over Artist (Female, EN-US)",
+    "description": "Record friendly voice-overs for e-learning modules (~5 minutes each).",
+    "location": "Remote",
+    "pay": 200,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Freelance HR Recruiter",
+    "description": "Source and screen tech candidates; experience with LinkedIn Recruiter.",
+    "location": "Mumbai, IN",
+    "pay": 1200,
+    "currency": "INR",
+    "type": "freelance"
+  },
+  {
+    "title": "Illustrator (Anime Style)",
+    "description": "Draw character sheets and key art in an anime style for an indie game.",
+    "location": "Remote",
+    "pay": 180,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "Azure DevOps Engineer",
+    "description": "Automate CI/CD pipelines and infrastructure as code using Bicep or ARM.",
+    "location": "Seattle, WA",
+    "pay": 70,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Spanish→English Translator",
+    "description": "Translate legal documents (Spanish to English); must be ATA certified.",
+    "location": "Remote",
+    "pay": 0.06,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "TikTok Growth Strategist",
+    "description": "Create and manage short-form content calendar to hit 100k followers in 3 months.",
+    "location": "Remote",
+    "pay": 45,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "2D Motion Graphics Animator",
+    "description": "Animate 30-second explainer videos with characters and iconography.",
+    "location": "Remote",
+    "pay": 500,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Data Scientist (R & Python)",
+    "description": "Analyze large customer datasets and build predictive churn models.",
+    "location": "Boston, MA",
+    "pay": 80,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Cyber-Security Pen-Tester",
+    "description": "Conduct vulnerability assessments and provide remediation roadmap.",
+    "location": "Remote",
+    "pay": 90,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Etsy Shop SEO Optimizer",
+    "description": "Keyword research and listing optimisation to improve organic sales.",
+    "location": "Remote",
+    "pay": 150,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "Kotlin Multiplatform Tutor",
+    "description": "Coach one student on KMP basics twice a week over Zoom.",
+    "location": "Remote",
+    "pay": 40,
+    "currency": "USD",
+    "type": "part-time"
+  },
+  {
+    "title": "Medical Transcriptionist",
+    "description": "Transcribe cardiology dictations with 98%+ accuracy, 24h turnaround.",
+    "location": "Remote",
+    "pay": 1.25,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "Illustration Clean-Up (AI to Vector)",
+    "description": "Convert AI-generated art into clean, scalable SVG vectors.",
+    "location": "Remote",
+    "pay": 50,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "React Component Library Themer",
+    "description": "Add dark-mode themes and Storybook docs to an internal component library.",
+    "location": "Remote",
+    "pay": 55,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Email List Scraper & Verifier",
+    "description": "Build a 5k clean email list of SaaS CTOs using Hunter and NeverBounce.",
+    "location": "Remote",
+    "pay": 120,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "Voice-Controlled Alexa Skill Developer",
+    "description": "Develop and publish a custom Alexa skill with account linking.",
+    "location": "Remote",
+    "pay": 500,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Docker-Kubernetes Consultant",
+    "description": "Migrate legacy services into EKS with proper Helm charts.",
+    "location": "Remote",
+    "pay": 85,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Squarespace Landing Page Designer",
+    "description": "Design and build high-converting Squarespace landing pages for SaaS trials.",
+    "location": "Remote",
+    "pay": 300,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "After Effects Template Customizer",
+    "description": "Modify Envato templates with brand fonts, colours and lower-thirds.",
+    "location": "Remote",
+    "pay": 120,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "LinkedIn Lead Generation Expert",
+    "description": "Run personalised connection campaigns to generate 100 SQLs/month.",
+    "location": "Remote",
+    "pay": 35,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Amazon Product Listing Copywriter",
+    "description": "Write SEO-rich bullet points and descriptions for Amazon listings.",
+    "location": "Remote",
+    "pay": 40,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "Flutter App UI Polish",
+    "description": "Improve animations, fix layout issues and add localisation support.",
+    "location": "Remote",
+    "pay": 45,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Tableau Dashboard Builder",
+    "description": "Create interactive sales dashboards with drill-down filters and alerts.",
+    "location": "Remote",
+    "pay": 65,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "SAP FICO Functional Consultant",
+    "description": "Configure FI/CO modules and train finance team during migration.",
+    "location": "Frankfurt, DE",
+    "pay": 95,
+    "currency": "EUR",
+    "type": "freelance"
+  },
+  {
+    "title": "Legal Contract Drafter (US)",
+    "description": "Draft SaaS MSAs and NDAs compliant with Delaware law.",
+    "location": "Remote",
+    "pay": 300,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "Notion Workspace Architect",
+    "description": "Design a scalable Notion workspace for a 20-person agency.",
+    "location": "Remote",
+    "pay": 50,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Pinterest Pin Designer",
+    "description": "Create eye-catching pins that follow the latest Pinterest trends.",
+    "location": "Remote",
+    "pay": 20,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "Shopify Speed Optimizer",
+    "description": "Improve Core Web Vitals scores to 90+ on mobile and desktop.",
+    "location": "Remote",
+    "pay": 250,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Rust Backend API Developer",
+    "description": "Refactor micro-service to Rust with Actix and Postgres.",
+    "location": "Remote",
+    "pay": 75,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Product Hunt Launch Manager",
+    "description": "Coordinate assets and outreach for a top-5 Product Hunt launch day.",
+    "location": "Remote",
+    "pay": 400,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "GatsbyJS Static Site Builder",
+    "description": "Build fast static marketing site with MDX and i18n support.",
+    "location": "Remote",
+    "pay": 55,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Excel Macro Guru",
+    "description": "Automate reporting spreadsheets with VBA and pivot tables.",
+    "location": "Remote",
+    "pay": 160,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "Mandarin Voice-Over Proof-reader",
+    "description": "Review Mandarin voice-over scripts for tone and accuracy.",
+    "location": "Remote",
+    "pay": 20,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "IT Security Policy Writer",
+    "description": "Create ISO 27001-aligned security policies and procedures.",
+    "location": "Remote",
+    "pay": 55,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Unity 3D Level Designer",
+    "description": "Design and light immersive levels for a mobile RPG.",
+    "location": "Remote",
+    "pay": 65,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Twitch Overlay Graphic Designer",
+    "description": "Design animated overlays and alerts for gaming streamers.",
+    "location": "Remote",
+    "pay": 100,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "Go API Refactor",
+    "description": "Refactor monolith API into idiomatic Go with unit tests.",
+    "location": "Remote",
+    "pay": 70,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Shopify CRO Analyst",
+    "description": "Run A/B tests and heatmap analysis to lift conversion rate.",
+    "location": "Remote",
+    "pay": 60,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Financial Model (Startup SaaS)",
+    "description": "Build 3-statement model with ARR cohorts and scenario switches.",
+    "location": "Remote",
+    "pay": 900,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "Arabic Subtitles Creator",
+    "description": "Add accurate Arabic subtitles to English videos (SRT format).",
+    "location": "Remote",
+    "pay": 8,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "Joomla to WordPress Migrator",
+    "description": "Migrate entire Joomla site (posts, users, SEO) to WordPress 6.",
+    "location": "Remote",
+    "pay": 300,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "AI Prompt Engineer (GPT/Claude)",
+    "description": "Craft effective prompts for marketing copy and chatbot flows.",
+    "location": "Remote",
+    "pay": 85,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Photoshop Product Retoucher",
+    "description": "Remove backgrounds and colour-correct 50 product photos.",
+    "location": "Remote",
+    "pay": 7,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "React Testing Library Setup",
+    "description": "Add RTL + Jest tests for 80% coverage on a React project.",
+    "location": "Remote",
+    "pay": 220,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "Squarespace SEO Fixes",
+    "description": "Optimise meta tags and structured data to boost Squarespace rankings.",
+    "location": "Remote",
+    "pay": 35,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Cryptocurrency White-paper Writer",
+    "description": "Write technical white-paper for DeFi token; 2,000 words.",
+    "location": "Remote",
+    "pay": 0.18,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Shopify App Integration (Zapier)",
+    "description": "Connect Shopify orders to Airtable and Slack via custom Zapier actions.",
+    "location": "Remote",
+    "pay": 180,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "Laravel Bug-Fix Sprint",
+    "description": "Fix auth, queue and caching bugs in an existing Laravel app.",
+    "location": "Remote",
+    "pay": 55,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Etsy Listings Translator (French)",
+    "description": "Translate Etsy handmade listings from English to French.",
+    "location": "Remote",
+    "pay": 0.05,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "Dubbing Director (Spanish)",
+    "description": "Oversee Spanish dubbing sessions for an animated series.",
+    "location": "Remote",
+    "pay": 70,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Ghostwriter, Business Blog",
+    "description": "Write long-form thought leadership articles (1,500 words each).",
+    "location": "Remote",
+    "pay": 150,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "Autodesk Maya Rigging Artist",
+    "description": "Create production-ready character rigs for an indie film.",
+    "location": "Remote",
+    "pay": 65,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "WooCommerce Payment Setup",
+    "description": "Integrate Stripe, PayPal and Apple Pay, ensuring PCI compliance.",
+    "location": "Remote",
+    "pay": 120,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "Cold Email Copy Specialist",
+    "description": "Write persuasive cold-email sequences with custom first lines.",
+    "location": "Remote",
+    "pay": 45,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Facebook Messenger Bot Builder",
+    "description": "Build ManyChat bot flows for e-commerce FAQ and sales.",
+    "location": "Remote",
+    "pay": 280,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "ClickUp Workflow Consultant",
+    "description": "Set up ClickUp automations and dashboards for a 15-person team.",
+    "location": "Remote",
+    "pay": 50,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "WordPress Malware Removal",
+    "description": "Clean hacked WordPress sites and harden security configs.",
+    "location": "Remote",
+    "pay": 110,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "Shopify Theme Internationalisation",
+    "description": "Add multi-language support to a Shopify 2.0 theme using Translate & Adapt.",
+    "location": "Remote",
+    "pay": 300,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Mechanical CAD Drafter (SolidWorks)",
+    "description": "Draft sheet-metal parts and assembly drawings per ASME Y14.5.",
+    "location": "Detroit, MI",
+    "pay": 60,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Event Poster Illustrator",
+    "description": "Illustrate vibrant posters for music festivals and events.",
+    "location": "Remote",
+    "pay": 190,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "iOS SwiftUI Bug Fix",
+    "description": "Resolve layout bugs and add dark-mode support in a SwiftUI app.",
+    "location": "Remote",
+    "pay": 250,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "Technical Documentation Writer",
+    "description": "Write developer guides and API references for a fintech SDK.",
+    "location": "Remote",
+    "pay": 40,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Google Sheets Apps Script Dev",
+    "description": "Automate reporting and Slack alerts with Google Apps Script.",
+    "location": "Remote",
+    "pay": 80,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "React Native Push-Notif Setup",
+    "description": "Integrate Firebase Cloud Messaging and local notifications.",
+    "location": "Remote",
+    "pay": 140,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "Canva Infographic Designer",
+    "description": "Design data visualisations in Canva for social media posts.",
+    "location": "Remote",
+    "pay": 30,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Email Deliverability Consultant",
+    "description": "Improve sender score and inbox placement for marketing campaigns.",
+    "location": "Remote",
+    "pay": 75,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Unreal Engine Lighting Artist",
+    "description": "Craft realistic lighting scenarios for a UE5 architectural walkthrough.",
+    "location": "Remote",
+    "pay": 70,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Zendesk Help-Center Themer",
+    "description": "Customise Zendesk Guide theme to match brand style guide.",
+    "location": "Remote",
+    "pay": 250,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "Shopify B2B Wholesale Setup",
+    "description": "Configure Shopify Plus B2B features and tiered pricing.",
+    "location": "Remote",
+    "pay": 65,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "Spanish Proofreader (Legal)",
+    "description": "Proofread Spanish legal documents for grammar and clarity.",
+    "location": "Remote",
+    "pay": 0.07,
+    "currency": "USD",
+    "type": "gig"
+  },
+  {
+    "title": "MERN SaaS Starter Kit Upgrade",
+    "description": "Upgrade a MERN starter repo to latest dependencies and add Stripe billing.",
+    "location": "Remote",
+    "pay": 68,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "ITIL Process Documentation",
+    "description": "Document incident and change management processes per ITIL v4.",
+    "location": "Remote",
+    "pay": 50,
+    "currency": "USD",
+    "type": "freelance"
+  },
+  {
+    "title": "TikTok Ads Media Buyer",
+    "description": "Plan, launch and scale TikTok ad campaigns to ROAS 3+.",
+    "location": "Remote",
+    "pay": 50,
+    "currency": "USD",
+    "type": "gig"
+  }
+]

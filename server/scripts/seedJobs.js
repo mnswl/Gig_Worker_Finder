@@ -11,7 +11,7 @@ const fs = require('fs');
 const path = require('path');
 
 const BASE_URL = process.env.SEED_BASE_URL || 'https://gigworkerfinder-production.up.railway.app/api';
-const EMAIL = process.env.SEED_EMAIL || 'employer@example.com'; // TODO: replace
+const EMAIL = process.env.SEED_EMAIL || 'thusithjayantha75@gmail.com'; // TODO: replace
 const PASS  = process.env.SEED_PASS  || 'password123';           // TODO: replace
 
 const jsonPath = path.join(__dirname, 'seedJobs.json');

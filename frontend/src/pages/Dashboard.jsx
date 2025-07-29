@@ -451,7 +451,7 @@ function Dashboard() {
                     return <span className={`badge bg-${payClr} fw-normal`}>{original}{convPart}</span>;
                   })()}
                 </div>
-                <small className="text-muted d-flex flex-wrap gap-1 align-items-center">
+                <div className="text-muted small">
                   {job.location} • {job.type}
                   {job.location && job.location.toLowerCase().includes('remote') && (
                     <span className="badge bg-info text-dark ms-1">Remote</span>
@@ -468,9 +468,11 @@ function Dashboard() {
                   {(() => {
                     const posted = (Date.now() - new Date(job.createdAt)) / 86400000;
                     return posted < 2 ? <span className="badge bg-danger ms-1">Urgent</span> : null;
-                  })()} • Posted by {job.employer && job.employer.name ? job.employer.name : 'Unknown'}
+                  })()}
+                  <br />
+                  • Posted by {job.employer && job.employer.name ? job.employer.name : 'Unknown'}
                   {job.employer && ((job.employer._id || job.employer) === myId) ? ' (me)' : ''}
-                </small>
+                </div>
               </div>
               {expanded.includes(job._id) && (
                 <div className="card card-body bg-light mt-3 w-100">

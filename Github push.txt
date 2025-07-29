@@ -1,0 +1,11 @@
+git init
+
+git add .
+
+git commit -am "initial commit"
+
+git remote add origin https://github.com/mnswl/Project_1
+
+git remote -v
+
+git push origin main

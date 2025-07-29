@@ -1,6 +1,6 @@
 import '../styles/Home.css';
 import { Link } from 'react-router-dom';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import useHeroAnimation from '../hooks/useHeroAnimation';
 import { pulse } from '../utils/animations';
 import MorphingBlob from '../components/MorphingBlob';
@@ -16,12 +16,15 @@ const avatar4 = 'https://i.pravatar.cc/120?img=4';
 const avatar5 = 'https://i.pravatar.cc/120?img=5';
 
 function Home() {
+  const [stats] = useState({jobs: 125, freelancers: 85, clients: 40});
   const joinRef = useRef(null);
   useHeroAnimation();
   useScrollReveal();
   useCountUp();
   useParallax();
   useSmoothScrollAnimations();
+
+  
 
   return (
     <>
@@ -39,11 +42,11 @@ function Home() {
           </div>
         </div>
 
-        <div className="bubble b1"><img src={avatar1} alt="avatar" /></div>
-        <div className="bubble b2"><img src={avatar2} alt="avatar" /></div>
-        <div className="bubble b3"><img src={avatar3} alt="avatar" /></div>
-        <div className="bubble b4"><img src={avatar4} alt="avatar" /></div>
-        <div className="bubble b5"><img src={avatar5} alt="avatar" /></div>
+        <div className="bubble b1"><img src={avatar1} alt="Freelancer avatar" /></div>
+        <div className="bubble b2"><img src={avatar2} alt="Freelancer avatar" /></div>
+        <div className="bubble b3"><img src={avatar3} alt="Freelancer avatar" /></div>
+        <div className="bubble b4"><img src={avatar4} alt="Freelancer avatar" /></div>
+        <div className="bubble b5"><img src={avatar5} alt="Freelancer avatar" /></div>
       </section>
 
       {/* Features */}
@@ -105,15 +108,15 @@ function Home() {
         <div className="container">
           <div className="row gy-4">
             <div className="col-6 col-md-3" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
-              <h3 className="fw-bold">12k+</h3>
+              <h3 className="fw-bold">{`${stats.jobs}K`}</h3>
               <p className="text-muted mb-0">Gigs Posted</p>
             </div>
             <div className="col-6 col-md-3" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
-              <h3 className="fw-bold">5.8k</h3>
+              <h3 className="fw-bold">{`${stats.freelancers}K`}</h3>
               <p className="text-muted mb-0">Active Freelancers</p>
             </div>
             <div className="col-6 col-md-3" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
-              <h3 className="fw-bold">2.3k+</h3>
+              <h3 className="fw-bold">{`${stats.clients}K`}</h3>
               <p className="text-muted mb-0">Clients</p>
             </div>
             <div className="col-6 col-md-3" data-aos="fade-up" data-aos-duration="800" data-aos-delay="500">
@@ -130,32 +133,36 @@ function Home() {
           <h2 className="section-title text-center mb-5">Explore Popular Categories</h2>
           <div className="row g-4">
             <div className="col-md-4 col-lg-3">
-              <div className="category-card reveal p-4 h-100 shadow-sm bg-white rounded" data-aos="fade-up">
+              <Link to="/jobs?cat=software-development" className="category-card reveal p-4 h-100 shadow-sm bg-white rounded text-decoration-none text-reset position-relative" data-aos="fade-up">
                 <div className="icon-circle bg-primary text-white mb-3 mx-auto fs-3">💻</div>
                 <h5 className="fw-bold mb-2">Software Development</h5>
                 <p className="text-muted mb-0">Full-stack developers, mobile apps, web development</p>
-              </div>
+                <span className="stretched-link" />
+              </Link>
             </div>
             <div className="col-md-4 col-lg-3">
-              <div className="category-card reveal p-4 h-100 shadow-sm bg-white rounded" data-aos="fade-up">
+              <Link to="/jobs?cat=design-creative" className="category-card reveal p-4 h-100 shadow-sm bg-white rounded text-decoration-none text-reset position-relative" data-aos="fade-up">
                 <div className="icon-circle bg-success text-white mb-3 mx-auto fs-3">🎨</div>
                 <h5 className="fw-bold mb-2">Design & Creative</h5>
                 <p className="text-muted mb-0">UI/UX, graphic design, video editing</p>
-              </div>
+                <span className="stretched-link" />
+              </Link>
             </div>
             <div className="col-md-4 col-lg-3">
-              <div className="category-card reveal p-4 h-100 shadow-sm bg-white rounded" data-aos="fade-up">
+              <Link to="/jobs?cat=marketing-sales" className="category-card reveal p-4 h-100 shadow-sm bg-white rounded text-decoration-none text-reset position-relative" data-aos="fade-up">
                 <div className="icon-circle bg-warning text-white mb-3 mx-auto fs-3">📊</div>
                 <h5 className="fw-bold mb-2">Marketing & Sales</h5>
                 <p className="text-muted mb-0">Digital marketing, SEO, content writing</p>
-              </div>
+                <span className="stretched-link" />
+              </Link>
             </div>
             <div className="col-md-4 col-lg-3">
-              <div className="category-card reveal p-4 h-100 shadow-sm bg-white rounded" data-aos="fade-up">
+              <Link to="/jobs?cat=writing-translation" className="category-card reveal p-4 h-100 shadow-sm bg-white rounded text-decoration-none text-reset position-relative" data-aos="fade-up">
                 <div className="icon-circle bg-info text-white mb-3 mx-auto fs-3">📝</div>
                 <h5 className="fw-bold mb-2">Writing & Translation</h5>
                 <p className="text-muted mb-0">Technical writing, copywriting, translation</p>
-              </div>
+                <span className="stretched-link" />
+              </Link>
             </div>
           </div>
         </div>
@@ -172,7 +179,7 @@ function Home() {
                 <div className="d-flex align-items-center">
                   <img src={avatar1} className="rounded-circle me-3" width="48" height="48" alt="Ayesha" />
                   <div>
-                    <strong>Ayesha</strong><br/><small>UI/UX Designer</small>
+                    <strong>Ayesha</strong><br/><small>UI/UX Designer • 🇱🇰 Sri Lanka</small>
                   </div>
                 </div>
               </div>
@@ -183,7 +190,7 @@ function Home() {
                 <div className="d-flex align-items-center">
                   <img src={avatar2} className="rounded-circle me-3" width="48" height="48" alt="Michael" />
                   <div>
-                    <strong>Michael</strong><br/><small>Startup Founder</small>
+                    <strong>Michael</strong><br/><small>Startup Founder • 🇺🇸 USA</small>
                   </div>
                 </div>
               </div>
@@ -194,7 +201,7 @@ function Home() {
                 <div className="d-flex align-items-center">
                   <img src={avatar3} className="rounded-circle me-3" width="48" height="48" alt="Samantha" />
                   <div>
-                    <strong>Samantha</strong><br/><small>Project Manager</small>
+                    <strong>Samantha</strong><br/><small>Project Manager • 🇬🇧 UK</small>
                   </div>
                 </div>
               </div>
@@ -209,7 +216,7 @@ function Home() {
           <h2 className="section-title text-center mb-5">Pricing Plans</h2>
           <div className="row g-4">
             <div className="col-md-6 col-lg-4">
-              <div className="pricing-card reveal p-4 h-100 shadow-sm rounded" data-aos="fade-up">
+              <Link to="/register" className="pricing-card reveal p-4 h-100 shadow-sm rounded text-decoration-none text-reset position-relative" data-aos="fade-up">
                 <h4 className="text-center mb-4">Basic</h4>
                 <div className="price text-center mb-4">Free</div>
                 <ul className="list-unstyled text-muted mb-4">
@@ -217,11 +224,11 @@ function Home() {
                   <li>✓ Basic Profile</li>
                   <li>✓ Standard Support</li>
                 </ul>
-                <Link to="/register" className="btn btn-outline-primary w-100">Get Started</Link>
-              </div>
+                <span className="stretched-link" />
+              </Link>
             </div>
             <div className="col-md-6 col-lg-4">
-              <div className="pricing-card reveal p-4 h-100 shadow-sm rounded bg-primary-subtle" data-aos="fade-up">
+              <Link to="/register" className="pricing-card reveal p-4 h-100 shadow-sm rounded bg-primary-subtle text-decoration-none text-reset position-relative" data-aos="fade-up">
                 <h4 className="text-center mb-4">Pro</h4>
                 <div className="price text-center mb-4">$9.99/mo</div>
                 <ul className="list-unstyled text-muted mb-4">
@@ -230,11 +237,11 @@ function Home() {
                   <li>✓ Priority Support</li>
                   <li>✓ Analytics Dashboard</li>
                 </ul>
-                <Link to="/register" className="btn btn-primary w-100">Upgrade Now</Link>
-              </div>
+                <span className="stretched-link" />
+              </Link>
             </div>
             <div className="col-md-12 col-lg-4">
-              <div className="pricing-card reveal p-4 h-100 shadow-sm rounded" data-aos="fade-up">
+              <Link to="/contact" className="pricing-card reveal p-4 h-100 shadow-sm rounded text-decoration-none text-reset position-relative" data-aos="fade-up">
                 <h4 className="text-center mb-4">Enterprise</h4>
                 <div className="price text-center mb-4">Custom</div>
                 <ul className="list-unstyled text-muted mb-4">
@@ -243,8 +250,8 @@ function Home() {
                   <li>✓ Custom Solutions</li>
                   <li>✓ API Access</li>
                 </ul>
-                <Link to="/contact" className="btn btn-outline-primary w-100">Contact Us</Link>
-              </div>
+                <span className="stretched-link" />
+              </Link>
             </div>
           </div>
         </div>

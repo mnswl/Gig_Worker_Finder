@@ -26,6 +26,7 @@ exports.createJob = async (req, res) => {
       type,
       schedule,
       employer: req.user.id,
+      status: 'approved', // Auto-approve all new jobs
     });
     // broadcast new job to all connected clients
     const io = req.app.get('io');

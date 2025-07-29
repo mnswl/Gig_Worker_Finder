@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Gig Worker Finder</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <!-- PWA manifest -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <meta name="theme-color" content="#736EFE" />
+    <!-- Hero background image - preload the exact image used in CSS -->
+    <link 
+      rel="preload" 
+      as="image" 
+      href="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1920&q=80" 
+      fetchpriority="high"
+      media="(min-width: 768px)">
+    <!-- Plausible analytics - only in production -->
+    <% if (process.env.NODE_ENV === 'production') { %>
+    <script defer data-domain="gigworkerfinder.com" src="https://plausible.io/js/plausible.js"></script>
+    <% } %>
     <!-- Material Dashboard CSS only -->
     <link rel="stylesheet" href="%PUBLIC_URL%/assets/css/material-dashboard.css" />
       <script src="https://accounts.google.com/gsi/client" async defer></script>

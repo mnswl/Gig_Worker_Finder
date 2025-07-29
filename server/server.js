@@ -63,6 +63,7 @@ const jobRoutes = require('./routes/jobs');
 const chatRoutes = require('./routes/chat');
 const userRoutes = require('./routes/users');
 const adminRoutes = require('./routes/admin');
+const statsRoutes = require('./routes/stats');
 
 // Use routes
 app.use('/api/auth', authRoutes);
@@ -70,6 +71,7 @@ app.use('/api/jobs', jobRoutes);
 app.use('/api/chat', chatRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/stats', statsRoutes);
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, {

@@ -1,27 +1,32 @@
 import { BrowserRouter, Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
-import Verify from './pages/Verify';
-import TwoFactor from './pages/TwoFactor';
+
 import { useTranslation } from 'react-i18next';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './styles/theme.css';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import AOS from 'aos';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { socket, connectSocket } from './socket';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Home from './pages/Home';
-import Dashboard from './pages/Dashboard';
-import Profile from './pages/Profile';
-import About from './pages/About';
-import Terms from './pages/Terms';
-import Contact from './pages/Contact';
-import Chat from './pages/Chat';
-import AdminRegister from './pages/AdminRegister';
-import AdminDashboard from './pages/AdminDashboard';
+
 import { bounce } from './utils/animations';
+
+// Lazy-loaded page components for code-splitting
+const Home = lazy(() => import('./pages/Home'));
+const Login = lazy(() => import('./pages/Login'));
+const Register = lazy(() => import('./pages/Register'));
+const Dashboard = lazy(() => import('./pages/Dashboard'));
+const Profile = lazy(() => import('./pages/Profile'));
+const Verify = lazy(() => import('./pages/Verify'));
+const TwoFactor = lazy(() => import('./pages/TwoFactor'));
+const Terms = lazy(() => import('./pages/Terms'));
+const Contact = lazy(() => import('./pages/Contact'));
+const About = lazy(() => import('./pages/About'));
+const Chat = lazy(() => import('./pages/Chat'));
+const AdminRegister = lazy(() => import('./pages/AdminRegister'));
+const AdminDashboard = lazy(() => import('./pages/AdminDashboard'));
 import CursorAura from './components/CursorAura';
+import RouteLoader from './components/RouteLoader';
 import api from './api';
 
 function Navigation() {
@@ -35,6 +40,7 @@ function Navigation() {
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
   const { t, i18n } = useTranslation();
+  const [collapsed, setCollapsed] = useState(false);
   const savedLng = localStorage.getItem('lng');
   const [lng, setLng] = useState(savedLng==='ta' ? 'en' : (savedLng || 'en'));
 
@@ -96,12 +102,16 @@ function Navigation() {
   };
 
   return (
-    <nav className="navbar navbar-top navbar-expand-md navbar-dark bg-primary border-bottom">
+    <nav className="navbar navbar-top navbar-expand-md navbar-dark border-bottom">
       <div className="container-fluid">
         <Link ref={brandRef} className="navbar-brand d-flex align-items-center" to="/">
           <img src="/logo.png" alt="Gig Worker Finder" height="40" className="me-2" />
         </Link>
-        <div className="ms-auto d-flex align-items-center">
+        <button className="navbar-toggler" type="button" aria-label="Toggle navigation" onClick={() => setCollapsed(c => !c)}>
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className={"collapse navbar-collapse" + (collapsed ? " show" : "")} id="mainNav">
+          <div className="ms-auto d-flex align-items-center">
           <div className="form-check form-switch text-light me-3 mb-0">
             <input
               className="form-check-input"
@@ -149,11 +159,12 @@ function Navigation() {
               </div>
               <Link className="btn btn-link text-white" to="/about">About</Link>
                <Link className="btn btn-link text-white" to="/login">{t('login')}</Link>
-               <Link className="btn btn-link text-white" to="/register">{t('signUp')}</Link>
+               <Link className="btn btn-cta mx-2" to="/register">{t('signUp')}</Link>
                <Link className="btn btn-link text-white" to="/contact">Contact</Link>
               <Link className="btn btn-link text-white" to="/admin-register">Admin SignUp</Link>
             </>
           )}
+        </div>
         </div>
       </div>
     </nav>
@@ -196,8 +207,11 @@ function App() {
     <BrowserRouter>
       <Navigation />
       <CursorAura />
+      <RouteLoader />
 
-      <AnimatedRoutes />
+      <Suspense fallback={<RouteLoader />}>
+        <AnimatedRoutes />
+      </Suspense>
     <ToastContainer position="top-right" autoClose={3000} hideProgressBar newestOnTop closeOnClick pauseOnFocusLoss draggable pauseOnHover />
     </BrowserRouter>
   );

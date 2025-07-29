@@ -24,6 +24,11 @@ export default function useCountUp(selector = '.stats h3') {
               return;
             }
             const num = parseFloat(match[1].replace(/,/g, ''));
+            if (isNaN(num)) {
+              node.style.opacity = 1;
+              observer.unobserve(node);
+              return;
+            }
             const suffix = match[2];
 
             const counter = { val: num }; // Start from the actual value

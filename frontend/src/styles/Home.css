@@ -1,10 +1,13 @@
 .hero {
-  background: linear-gradient(90deg, #5EFCE8 0%, #736EFE 50%, #8C7EFF 100%) !important;
-  background-size: 300% 300% !important;
-  animation: gradientShift 32s ease-in-out infinite !important;
+  /* Background with gradient overlay */
+  position: relative;
+  background: linear-gradient(90deg, #5EFCE8 0%, #736EFE 50%, #8C7EFF 100%),
+              url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+  background-blend-mode: overlay;
+  animation: gradientShift 32s ease-in-out infinite;
+  background-size: 300% 300%, cover;
   color: #fff;
   padding: 80px 0;
-  position: relative;
   overflow: hidden;
 }
 

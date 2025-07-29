@@ -1,0 +1,21 @@
+{
+  "name": "Gig Worker Finder",
+  "short_name": "GWFinder",
+  "description": "Discover freelance gigs and hire talent worldwide.",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#736EFE",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

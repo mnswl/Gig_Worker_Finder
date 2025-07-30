@@ -3,9 +3,13 @@ import { useTranslation } from 'react-i18next';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './styles/theme.css';
+import './styles/glassnav.css';
+import './styles/light-mode-enhancements.css';
+import './styles/job-card-fix.css';
 import { ThemeProvider } from './contexts/ThemeContext';
 import ThemeToggle from './components/ThemeToggle';
 import GlassmorphicNav from './components/GlassmorphicNav';
+import ScrollToTop from './components/ScrollToTop';
 import CursorAura from './components/CursorAura';
 import RouteLoader from './components/RouteLoader';
 import { bounce } from './utils/animations';
@@ -141,6 +145,7 @@ function App() {
           <Suspense fallback={<RouteLoader />}>
             <AnimatedRoutes />
           </Suspense>
+          <ScrollToTop />
         </BrowserRouter>
         <ToastContainer position="top-right" autoClose={5000} />
       </div>

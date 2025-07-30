@@ -27,11 +27,18 @@ body {
   margin: 0 auto;
   padding: 8px 16px;
   border-radius: 16px;
-  background: rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  background: rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Light mode styles */
+body:not(.dark) .glass-container {
+  background: rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* Logo */
@@ -47,8 +54,12 @@ body {
   gap: 4px;
   align-items: center;
   padding: 2px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.03);
   border-radius: 12px;
+}
+
+body:not(.dark) .glass-nav-items {
+  background: rgba(0, 0, 0, 0.02);
 }
 
 .glass-highlight {
@@ -61,6 +72,11 @@ body {
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
               width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: none;
+}
+
+body:not(.dark) .glass-highlight {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  box-shadow: 0 2px 12px rgba(79, 70, 229, 0.25);
 }
 
 /* Each nav link */
@@ -78,6 +94,29 @@ body {
   transition: color 0.2s ease;
   white-space: nowrap;
   z-index: 1;
+}
+
+/* Light mode text colors only - keep translucent style */
+body:not(.dark) .glass-nav-link {
+  color: rgba(0, 0, 0, 0.85) !important;
+}
+
+body:not(.dark) .glass-nav-link:hover {
+  color: rgba(0, 0, 0, 1) !important;
+}
+
+body:not(.dark) .glass-nav-link.active {
+  color: #ffffff !important;
+}
+
+/* Fix nav link text and icons specifically */
+body:not(.dark) .glass-nav-link span {
+  color: inherit !important;
+}
+
+body:not(.dark) .glass-nav-link svg {
+  color: inherit !important;
+  stroke: currentColor !important;
 }
 
 .glass-nav-link svg {
@@ -108,13 +147,34 @@ body {
   padding: 6px 10px;
   border: none;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.03);
   color: rgba(255, 255, 255, 0.7);
   font-size: 12px;
   font-weight: 500;
   text-decoration: none;
   transition: all 0.2s ease;
   cursor: pointer;
+}
+
+/* Light mode control button colors - keep translucent style */
+body:not(.dark) .glass-control-btn {
+  background: rgba(0, 0, 0, 0.02) !important;
+  color: rgba(0, 0, 0, 0.85) !important;
+}
+
+body:not(.dark) .glass-control-btn:hover {
+  background: rgba(0, 0, 0, 0.05) !important;
+  color: rgba(0, 0, 0, 1) !important;
+}
+
+/* Fix control button text and icons */
+body:not(.dark) .glass-control-btn span {
+  color: inherit !important;
+}
+
+body:not(.dark) .glass-control-btn svg {
+  color: inherit !important;
+  stroke: currentColor !important;
 }
 
 .glass-control-btn:hover {

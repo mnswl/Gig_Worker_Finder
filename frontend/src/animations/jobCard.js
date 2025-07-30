@@ -4,21 +4,38 @@ import { animate, stagger } from 'animejs';
 export const animateJobCardEntrance = () => {
   const cards = document.querySelectorAll('.job-card');
   if (!cards.length) return;
+  
+  // Add animating class to prevent overlap
+  cards.forEach(card => card.classList.add('animating'));
+  
   animate(cards, {
-    translateY: [24, 0],
+    translateY: [12, 0], // Reduced movement to prevent overlap
     opacity: [0, 1],
-    delay: stagger(80), // cascade
-    duration: 500,
+    delay: stagger(60), // Faster cascade
+    duration: 400, // Shorter duration
     easing: 'easeOutQuad',
+    complete: () => {
+      // Remove animating class when done
+      cards.forEach(card => card.classList.remove('animating'));
+    }
   });
 };
 
 // Hover lift / scale effect for a single card element
 export const jobCardHover = (enter, element) => {
+  if (!element) return;
+  
+  // Set higher z-index on hover to prevent overlap
+  if (enter) {
+    element.style.zIndex = '10';
+  } else {
+    element.style.zIndex = '';
+  }
+  
   animate(element, {
-    scale: enter ? 1.04 : 1,
-    translateY: enter ? -2 : 0,
-    duration: 250,
+    scale: enter ? 1.02 : 1, // Reduced scale to prevent overlap
+    translateY: enter ? -4 : 0, // Slightly more lift for better visibility
+    duration: 300,
     easing: 'easeOutExpo',
   });
 };
@@ -32,20 +49,25 @@ export const setupJobCardScrollReveal = () => {
   if (!cards.length) return;
 
   revealObserver = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
+    entries.forEach((entry, index) => {
       if (entry.isIntersecting) {
         const el = entry.target;
-        animate(el, {
-          translateY: [60, 0],
-          opacity: [0, 1],
-          duration: 600,
-          easing: 'easeOutQuad',
-        });
-        el.classList.add('revealed');
+        
+        // Add staggered delay to prevent all cards animating at once
+        setTimeout(() => {
+          animate(el, {
+            translateY: [30, 0], // Reduced movement
+            opacity: [0, 1],
+            duration: 500, // Shorter duration
+            easing: 'easeOutQuad',
+          });
+          el.classList.add('revealed');
+        }, index * 100); // Stagger the animations
+        
         obs.unobserve(el);
       }
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -80px 0px' });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }); // Adjusted margins
 
   cards.forEach(card => revealObserver.observe(card));
 };

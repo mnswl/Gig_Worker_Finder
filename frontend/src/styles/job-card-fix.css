@@ -1,0 +1,115 @@
+/* Job Card Layering Fix */
+.job-card {
+  position: relative !important;
+  z-index: 1 !important;
+  transform-origin: center !important;
+  backface-visibility: hidden !important;
+  will-change: transform, opacity !important;
+  isolation: isolate !important;
+}
+
+/* Ensure proper spacing and prevent overlap */
+.job-card:hover {
+  z-index: 10 !important;
+  position: relative !important;
+}
+
+/* Fix for Bootstrap grid layout */
+.row .col.job-card {
+  margin-bottom: 1.5rem !important;
+  padding: 0.75rem !important;
+}
+
+/* Ensure cards don't overlap during animations */
+.job-card.animating {
+  z-index: 5 !important;
+}
+
+/* Fix for card container spacing */
+.list-unstyled.row {
+  margin: 0 !important;
+  gap: 1rem !important;
+}
+
+.list-unstyled.row .col {
+  padding: 0.5rem !important;
+  flex: 0 0 auto !important;
+}
+
+/* Responsive grid fixes */
+@media (min-width: 768px) {
+  .row-cols-md-2 > .col {
+    flex: 0 0 calc(50% - 1rem) !important;
+    max-width: calc(50% - 1rem) !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .row-cols-lg-3 > .col {
+    flex: 0 0 calc(33.333333% - 1rem) !important;
+    max-width: calc(33.333333% - 1rem) !important;
+  }
+}
+
+/* Ensure proper card body layout */
+.job-card .card-body {
+  position: relative !important;
+  z-index: 2 !important;
+  padding: 1.25rem !important;
+}
+
+/* Fix any transform issues */
+.job-card * {
+  transform-style: preserve-3d !important;
+}
+
+/* Prevent cards from going behind each other */
+.job-card:nth-child(odd) {
+  z-index: 2 !important;
+}
+
+.job-card:nth-child(even) {
+  z-index: 3 !important;
+}
+
+/* Override any problematic animations */
+.job-card.revealed {
+  transform: none !important;
+  opacity: 1 !important;
+}
+
+/* Ensure proper stacking context */
+.job-card-container {
+  position: relative !important;
+  z-index: 0 !important;
+}
+
+/* Fix for compact mode */
+.job-card.compact {
+  min-height: 200px !important;
+  margin-bottom: 1rem !important;
+}
+
+/* Ensure proper card dimensions */
+.job-card.card {
+  min-height: 250px !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+/* Fix hover effects to not cause overlap */
+.job-card:hover {
+  transform: translateY(-4px) scale(1.02) !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Dark mode specific fixes */
+body.dark .job-card:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.28), 0 2px 8px rgba(0,0,0,0.16) !important;
+}
+
+/* Light mode specific fixes */
+body:not(.dark) .job-card:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12) !important;
+}

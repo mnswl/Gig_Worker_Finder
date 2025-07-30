@@ -34,20 +34,27 @@
   --color-info: #3b82f6;
   
   /* Background & Surface */
-  --color-bg: var(--color-neutral-50);
+  --color-bg: #fafbfc;
   --color-surface: #ffffff;
   --color-surface-elevated: #ffffff;
-  --color-surface-hover: rgba(0, 0, 0, 0.02);
+  --color-surface-hover: rgba(0, 0, 0, 0.03);
+  --color-surface-subtle: #f8fafc;
+  --color-surface-card: rgba(255, 255, 255, 0.8);
   
   /* Text & Icons */
-  --color-text: var(--color-neutral-900);
-  --color-text-secondary: var(--color-neutral-600);
-  --color-text-muted: var(--color-neutral-500);
+  --color-text: #1a202c;
+  --color-text-secondary: #4a5568;
+  --color-text-muted: #718096;
   --color-text-on-primary: #ffffff;
+  --color-text-accent: var(--color-primary-600);
   
   /* Borders & Dividers */
-  --color-border: var(--color-neutral-200);
-  --color-border-hover: var(--color-neutral-300);
+  --color-border: #e2e8f0;
+  --color-border-hover: #cbd5e1;
+  --color-border-subtle: #f1f5f9;
+  --color-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --color-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --color-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
   
   /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);

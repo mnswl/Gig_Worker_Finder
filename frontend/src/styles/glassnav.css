@@ -1,0 +1,182 @@
+/* Clean Glassmorphic Navigation */
+
+/* Add top padding to body to prevent nav from covering content */
+body {
+  padding-top: 70px !important;
+}
+
+/* Ensure main content doesn't get covered */
+.App {
+  padding-top: 0;
+}
+
+.glass-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 12px 20px;
+}
+
+.glass-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 8px 16px;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* Logo */
+.glass-logo {
+  height: 28px;
+  width: auto;
+}
+
+/* Nav items container */
+.glass-nav-items {
+  position: relative;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: 2px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+}
+
+.glass-highlight {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+/* Each nav link */
+.glass-nav-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.glass-nav-link svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 1.5;
+}
+
+.glass-nav-link:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.glass-nav-link.active {
+  color: #ffffff;
+}
+
+/* Right controls */
+.glass-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.glass-control-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.glass-control-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.glass-control-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Language dropdown */
+.glass-dropdown {
+  position: relative;
+}
+
+.glass-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 4px;
+  min-width: 120px;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: all 0.2s ease;
+}
+
+.glass-dropdown:hover .glass-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.glass-dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  background: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.glass-dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.glass-dropdown-item:first-child {
+  border-radius: 8px 8px 0 0;
+}
+
+.glass-dropdown-item:last-child {
+  border-radius: 0 0 8px 8px;
+}

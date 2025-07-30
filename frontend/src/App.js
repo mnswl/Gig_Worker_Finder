@@ -4,12 +4,17 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './styles/theme.css';
 import { ThemeProvider } from './contexts/ThemeContext';
-import { useState, useEffect, useRef, lazy, Suspense } from 'react';
-import AOS from 'aos';
-import { CSSTransition, SwitchTransition } from 'react-transition-group';
-import { socket, connectSocket } from './socket';
-import { bounce } from './utils/animations';
 import ThemeToggle from './components/ThemeToggle';
+import GlassmorphicNav from './components/GlassmorphicNav';
+import CursorAura from './components/CursorAura';
+import RouteLoader from './components/RouteLoader';
+import { bounce } from './utils/animations';
+import { connectSocket, socket } from './socket';
+import api from './api';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { Suspense, lazy, useRef, useEffect, useState } from 'react';
+import { SwitchTransition, CSSTransition } from 'react-transition-group';
 
 // Lazy-loaded page components for code-splitting
 const Home = lazy(() => import('./pages/Home'));
@@ -25,22 +30,12 @@ const About = lazy(() => import('./pages/About'));
 const Chat = lazy(() => import('./pages/Chat'));
 const AdminRegister = lazy(() => import('./pages/AdminRegister'));
 const AdminDashboard = lazy(() => import('./pages/AdminDashboard'));
-import CursorAura from './components/CursorAura';
-import RouteLoader from './components/RouteLoader';
-import api from './api';
 
 function Navigation() {
   const location = useLocation();
   const navigate = useNavigate();
-  const brandRef = useRef(null);
-  // bounce brand on mount
-  useEffect(() => {
-    if (brandRef.current) bounce(brandRef.current);
-  }, []);
   const [token, setToken] = useState(localStorage.getItem('token'));
-  // Theme is now managed by ThemeContext
   const { t, i18n } = useTranslation();
-  const [collapsed, setCollapsed] = useState(false);
   const savedLng = localStorage.getItem('lng');
   const [lng, setLng] = useState(savedLng==='ta' ? 'en' : (savedLng || 'en'));
 
@@ -74,8 +69,6 @@ function Navigation() {
     }
   }, [location]);
 
-  // Theme is now managed by ThemeContext
-
   // Refresh AOS animations on route change
   useEffect(()=>{
     AOS.refresh();
@@ -97,60 +90,12 @@ function Navigation() {
   };
 
   return (
-    <nav className="navbar navbar-top navbar-expand-md navbar-dark border-bottom">
-      <div className="container-fluid">
-        <Link ref={brandRef} className="navbar-brand d-flex align-items-center" to="/">
-          <img src="/logo.png" alt="Gig Worker Finder" height="40" className="me-2" />
-        </Link>
-        <button className="navbar-toggler" type="button" aria-label="Toggle navigation" onClick={() => setCollapsed(c => !c)}>
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className={"collapse navbar-collapse" + (collapsed ? " show" : "")} id="mainNav">
-          <div className="ms-auto d-flex align-items-center">
-            <ThemeToggle />
-          {token && localStorage.getItem('role')==='admin' && (
-              <Link className="btn btn-link text-white" to="/admin">Admin</Link>
-            )}
-            {token ? (
-            <>
-              <Link className="btn btn-link text-white" to="/dashboard">{t('dashboard')}</Link>
-              <Link className="btn btn-link text-white" to="/profile">{t('myProfile')}</Link>
-              <Link className="btn btn-link text-white" to="/about">{t('about')}</Link>
-               <Link className="btn btn-link text-white" to="/contact">Contact</Link>
-              <Link className="btn btn-link text-white" to="/chat">{t('chat')}</Link>
-              <div className="dropdown me-2">
-                <button className="btn btn-link text-white dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  {lng.toUpperCase()}
-                </button>
-                <ul className="dropdown-menu dropdown-menu-end">
-                  <li><button className="dropdown-item" onClick={()=>changeLanguage('en')}>English</button></li>
-                  <li><button className="dropdown-item" onClick={()=>changeLanguage('si')}>සිංහල</button></li>
-                </ul>
-              </div>
-              <button className="btn btn-link text-white" onClick={handleLogout}>{t('logout')}</button>
-            </>
-          ) : (
-            <>
-              <div className="dropdown me-2">
-                <button className="btn btn-link text-white dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  {lng.toUpperCase()}
-                </button>
-                <ul className="dropdown-menu dropdown-menu-end">
-                  <li><button className="dropdown-item" onClick={()=>changeLanguage('en')}>English</button></li>
-                  <li><button className="dropdown-item" onClick={()=>changeLanguage('si')}>සිංහල</button></li>
-                </ul>
-              </div>
-              <Link className="btn btn-link text-white" to="/about">About</Link>
-               <Link className="btn btn-link text-white" to="/login">{t('login')}</Link>
-               <Link className="btn btn-cta mx-2" to="/register">{t('signUp')}</Link>
-               <Link className="btn btn-link text-white" to="/contact">Contact</Link>
-              <Link className="btn btn-link text-white" to="/admin-register">Admin SignUp</Link>
-            </>
-          )}
-        </div>
-        </div>
-      </div>
-    </nav>
+    <GlassmorphicNav 
+      token={token}
+      handleLogout={handleLogout}
+      lng={lng}
+      changeLanguage={changeLanguage}
+    />
   );
 }
 

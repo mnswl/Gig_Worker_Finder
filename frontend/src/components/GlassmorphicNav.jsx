@@ -30,6 +30,7 @@ const GlassmorphicNav = ({ token, handleLogout, lng, changeLanguage }) => {
     { path: '/dashboard', icon: ChartBarIcon, label: t('dashboard'), key: 'dashboard' },
     { path: '/profile', icon: UserIcon, label: t('myProfile'), key: 'profile' },
     { path: '/chat', icon: ChatBubbleLeftRightIcon, label: t('chat'), key: 'chat' },
+    { path: '/settings', icon: Cog6ToothIcon, label: 'Settings', key: 'settings' },
     { path: '/about', icon: InformationCircleIcon, label: t('about'), key: 'about' },
     { path: '/contact', icon: PhoneIcon, label: 'Contact', key: 'contact' },
   ];

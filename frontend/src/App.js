@@ -32,6 +32,7 @@ const Terms = lazy(() => import('./pages/Terms'));
 const Contact = lazy(() => import('./pages/Contact'));
 const About = lazy(() => import('./pages/About'));
 const Chat = lazy(() => import('./pages/Chat'));
+const Settings = lazy(() => import('./pages/Settings'));
 const AdminRegister = lazy(() => import('./pages/AdminRegister'));
 const AdminDashboard = lazy(() => import('./pages/AdminDashboard'));
 
@@ -125,6 +126,7 @@ function AnimatedRoutes() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
             <Route path="/chat" element={<Chat />} />
+            <Route path="/settings" element={<Settings />} />
             <Route path="/admin-register" element={<AdminRegister />} />
             <Route path="/admin" element={<AdminDashboard />} />
           </Routes>

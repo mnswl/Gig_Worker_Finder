@@ -1,0 +1,403 @@
+/* Settings Page Styles */
+.settings-page {
+  min-height: 100vh;
+  padding-top: 80px; /* Account for fixed nav */
+}
+
+/* Settings Navigation */
+.settings-nav {
+  position: sticky;
+  top: 100px;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+}
+
+.settings-nav .card-title {
+  font-weight: 600;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+.settings-nav .nav-link {
+  padding: 0.75rem 1rem;
+  border: none;
+  background: none;
+  color: var(--text-secondary);
+  text-align: left;
+  width: 100%;
+  border-radius: 0;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.settings-nav .nav-link:hover {
+  background: var(--hover-bg);
+  color: var(--text-primary);
+}
+
+.settings-nav .nav-link.active {
+  background: var(--primary-color);
+  color: white;
+  font-weight: 600;
+}
+
+.settings-nav .nav-link.active .settings-icon {
+  color: white;
+}
+
+.settings-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+/* Settings Content */
+.settings-content {
+  min-height: 600px;
+}
+
+.settings-section {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section-title {
+  font-weight: 600;
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 0.5rem;
+}
+
+.section-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--primary-color);
+}
+
+/* Settings Groups */
+.settings-group {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  background: var(--card-bg);
+}
+
+.settings-group-title {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Form Controls */
+.form-label {
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.form-control,
+.form-select {
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--input-bg);
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(115, 110, 254, 0.25);
+  background: var(--input-bg);
+  color: var(--text-primary);
+}
+
+.input-group-text {
+  background: var(--input-bg);
+  border: 2px solid var(--border-color);
+  border-right: none;
+  color: var(--text-secondary);
+}
+
+.input-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Form Switches */
+.form-check-input {
+  width: 2.5rem;
+  height: 1.25rem;
+  background-color: var(--switch-bg);
+  border: 2px solid var(--border-color);
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-check-input:checked {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.2rem rgba(115, 110, 254, 0.25);
+}
+
+.form-check-label {
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-left: 0.5rem;
+}
+
+.form-check-label small {
+  font-weight: 400;
+  margin-top: 0.25rem;
+}
+
+/* Theme Toggle Section */
+.theme-toggle-section {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: var(--card-bg);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+}
+
+.theme-option {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-secondary);
+  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.theme-option:hover {
+  background: var(--hover-bg);
+  color: var(--text-primary);
+}
+
+.theme-option.active {
+  background: var(--primary-color);
+  color: white;
+  font-weight: 600;
+}
+
+/* Danger Zone */
+.danger-zone {
+  border-color: var(--danger-color) !important;
+  background: rgba(220, 53, 69, 0.05) !important;
+}
+
+.danger-zone .settings-group-title {
+  border-bottom-color: var(--danger-color) !important;
+}
+
+/* Settings Actions */
+.settings-actions {
+  background: var(--card-bg);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+}
+
+/* Buttons */
+.btn {
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  padding: 0.5rem 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+.btn-outline-primary {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  transform: translateY(-1px);
+}
+
+.btn-outline-secondary {
+  color: var(--text-secondary);
+  border-color: var(--border-color);
+}
+
+.btn-outline-secondary:hover {
+  background: var(--hover-bg);
+  border-color: var(--text-secondary);
+  color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+.btn-outline-danger {
+  color: var(--danger-color);
+  border-color: var(--danger-color);
+}
+
+.btn-outline-danger:hover {
+  background: var(--danger-color);
+  border-color: var(--danger-color);
+  transform: translateY(-1px);
+}
+
+/* Modal Styling */
+.modal-content {
+  background: var(--card-bg);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.modal-footer {
+  border-top: 1px solid var(--border-color);
+}
+
+.modal-title {
+  color: var(--text-primary);
+}
+
+.btn-close {
+  filter: var(--close-btn-filter);
+}
+
+/* Light Mode Specific Styles */
+body:not(.dark) .settings-page {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+body:not(.dark) .settings-nav,
+body:not(.dark) .settings-content {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+body:not(.dark) .settings-group {
+  background: rgba(255, 255, 255, 0.6);
+  border: 2px solid rgba(0, 0, 0, 0.08);
+}
+
+body:not(.dark) .form-control,
+body:not(.dark) .form-select {
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.9);
+}
+
+body:not(.dark) .form-control:focus,
+body:not(.dark) .form-select:focus {
+  background: rgba(255, 255, 255, 0.9);
+  color: rgba(0, 0, 0, 0.9);
+}
+
+body:not(.dark) .input-group-text {
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-right: none;
+}
+
+body:not(.dark) .theme-toggle-section {
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+body:not(.dark) .modal-content {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Dark Mode Specific Styles */
+body.dark .settings-nav,
+body.dark .settings-content {
+  background: rgba(35, 38, 58, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.dark .settings-group {
+  background: rgba(35, 38, 58, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .settings-page {
+    padding-top: 70px;
+  }
+  
+  .settings-nav {
+    position: static;
+    max-height: none;
+    margin-bottom: 1rem;
+  }
+  
+  .settings-nav .nav {
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 0.5rem;
+  }
+  
+  .settings-nav .nav-link {
+    white-space: nowrap;
+    min-width: 120px;
+    text-align: center;
+    border-radius: var(--radius-md);
+    margin: 0 0.25rem;
+  }
+  
+  .settings-section {
+    padding: 0;
+  }
+  
+  .settings-group {
+    padding: 1rem;
+  }
+  
+  .theme-toggle-section {
+    flex-direction: column;
+  }
+  
+  .theme-option {
+    text-align: center;
+  }
+}

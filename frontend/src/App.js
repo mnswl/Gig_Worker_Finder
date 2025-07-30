@@ -1,15 +1,15 @@
 import { BrowserRouter, Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
-
 import { useTranslation } from 'react-i18next';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './styles/theme.css';
+import { ThemeProvider } from './contexts/ThemeContext';
 import { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import AOS from 'aos';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { socket, connectSocket } from './socket';
-
 import { bounce } from './utils/animations';
+import ThemeToggle from './components/ThemeToggle';
 
 // Lazy-loaded page components for code-splitting
 const Home = lazy(() => import('./pages/Home'));
@@ -38,7 +38,7 @@ function Navigation() {
     if (brandRef.current) bounce(brandRef.current);
   }, []);
   const [token, setToken] = useState(localStorage.getItem('token'));
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+  // Theme is now managed by ThemeContext
   const { t, i18n } = useTranslation();
   const [collapsed, setCollapsed] = useState(false);
   const savedLng = localStorage.getItem('lng');
@@ -74,12 +74,7 @@ function Navigation() {
     }
   }, [location]);
 
-  // Apply theme changes
-  useEffect(() => {
-    document.body.classList.remove('light','dark');
-    document.body.classList.add(theme);
-    localStorage.setItem('theme', theme);
-  }, [theme]);
+  // Theme is now managed by ThemeContext
 
   // Refresh AOS animations on route change
   useEffect(()=>{
@@ -112,19 +107,7 @@ function Navigation() {
         </button>
         <div className={"collapse navbar-collapse" + (collapsed ? " show" : "")} id="mainNav">
           <div className="ms-auto d-flex align-items-center">
-          <div className="form-check form-switch text-light me-3 mb-0">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              role="switch"
-              id="themeSwitch"
-              checked={theme === 'dark'}
-              onChange={() => setTheme(prev => prev === 'light' ? 'dark' : 'light')}
-            />
-            <label className="form-check-label small" htmlFor="themeSwitch">
-              {theme === 'dark' ? t('themeDark') : t('themeLight')}
-            </label>
-          </div>
+            <ThemeToggle />
           {token && localStorage.getItem('role')==='admin' && (
               <Link className="btn btn-link text-white" to="/admin">Admin</Link>
             )}
@@ -204,18 +187,20 @@ function AnimatedRoutes() {
 
 function App() {
   return (
-    <BrowserRouter>
-      <Navigation />
-      <CursorAura />
-      <RouteLoader />
-
-      <Suspense fallback={<RouteLoader />}>
-        <AnimatedRoutes />
-      </Suspense>
-    <ToastContainer position="top-right" autoClose={3000} hideProgressBar newestOnTop closeOnClick pauseOnFocusLoss draggable pauseOnHover />
-    </BrowserRouter>
+    <ThemeProvider>
+      <div className="App">
+        <BrowserRouter>
+          <Navigation />
+          <CursorAura />
+          <RouteLoader />
+          <Suspense fallback={<RouteLoader />}>
+            <AnimatedRoutes />
+          </Suspense>
+        </BrowserRouter>
+        <ToastContainer position="top-right" autoClose={5000} />
+      </div>
+    </ThemeProvider>
   );
 }
 
 export default App;
-

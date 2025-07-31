@@ -563,7 +563,7 @@ function Profile() {
                       await api.post(`/jobs/${job._id}/unapply`);
                       setJobs(prev=> prev.filter(j=>j._id!==job._id));
                     }catch(err){ console.error(err); }
-                }}>Unapply</button>
+                }}>{t('unapply')}</button>
                 <button className="btn btn-sm btn-outline-primary mt-2 mt-md-0 ms-md-2" onClick={async ()=>{
                      const subject = prompt('Subject for message'); if(subject===null) return;
                       const text = prompt('Message body'); if(!text) return;

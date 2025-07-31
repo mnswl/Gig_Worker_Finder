@@ -422,7 +422,7 @@ function Dashboard() {
       </div>
       {selectedIds.length>0 && (
         <div className="alert alert-info d-flex flex-wrap gap-2 align-items-center">
-          <strong>{selectedIds.length} selected</strong>
+          <strong>{t('selected',{count:selectedIds.length})}</strong>
           {role === 'worker' && <button className="btn btn-sm btn-primary" onClick={handleBulkApply}>{t('apply')}</button>}
           <button className="btn btn-sm btn-outline-secondary" onClick={handleBulkBookmark}>{t('bookmark')}</button>
           <button className="btn btn-sm btn-outline-danger" onClick={handleBulkHide}>{t('hide')}</button>

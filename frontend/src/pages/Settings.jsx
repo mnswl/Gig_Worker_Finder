@@ -15,7 +15,9 @@ import {
   EnvelopeIcon,
   KeyIcon,
   TrashIcon,
-  CheckIcon
+  CheckIcon,
+  SunIcon,
+  MoonIcon
 } from '@heroicons/react/24/outline';
 import './Settings.css';
 
@@ -58,15 +60,71 @@ const Settings = () => {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [user, setUser] = useState(null);
   const [hasChanges, setHasChanges] = useState(false);
-  
-  // Verification modal state
   const [showVerificationModal, setShowVerificationModal] = useState(false);
-  const [verificationType, setVerificationType] = useState(''); // 'email' or 'phone'
-  const [verificationTarget, setVerificationTarget] = useState(''); // email address or phone number
+  const [verificationData, setVerificationData] = useState({ type: '', value: '', code: '' });
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [validationErrors, setValidationErrors] = useState({});
+  const [fieldTouched, setFieldTouched] = useState({});
   const [verificationCode, setVerificationCode] = useState('');
   const [verifying, setVerifying] = useState(false);
+  const [user, setUser] = useState(null);
+  const [undoTimeout, setUndoTimeout] = useState(null);
+  const [pendingDeletion, setPendingDeletion] = useState(false);
+
+  // Validation helper functions
+  const validateField = (key, value) => {
+    const errors = {};
+    
+    switch (key) {
+      case 'firstName':
+        if (!value.trim()) {
+          errors.firstName = 'First name is required';
+        } else if (!/^[A-Za-zÀ-ÖØ-öø-ÿ'\-\s]{2,40}$/.test(value.trim())) {
+          errors.firstName = 'Use letters only (2-40 chars)';
+        }
+        break;
+        
+      case 'lastName':
+        if (value && !/^[A-Za-zÀ-ÖØ-öø-ÿ'\-\s]{2,40}$/.test(value.trim())) {
+          errors.lastName = 'Use letters only (2-40 chars)';
+        }
+        break;
+        
+      case 'email':
+        if (!value.trim()) {
+          errors.email = 'Email is required';
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+          errors.email = 'Please enter a valid email address';
+        }
+        break;
+        
+      case 'phone':
+        if (value && !/^[\+]?[1-9][\d]{0,15}$/.test(value.replace(/[\s\-\(\)]/g, ''))) {
+          errors.phone = 'Please enter a valid phone number';
+        }
+        break;
+        
+      case 'bio':
+        if (value && value.length > 500) {
+          errors.bio = 'Bio must be less than 500 characters';
+        }
+        break;
+    }
+    
+    return errors;
+  };
+
+  const getFieldError = (key) => {
+    return fieldTouched[key] ? validationErrors[key] : null;
+  };
+
+  const isFieldValid = (key) => {
+    return fieldTouched[key] && !validationErrors[key];
+  };
+
+  // Indicates if any validation errors are present across the form
+  const hasValidationErrors = Object.values(validationErrors).some(Boolean);
 
   // Load user data on component mount
   useEffect(() => {
@@ -126,6 +184,18 @@ const Settings = () => {
   }, [i18n.language]);
 
   const handleSettingChange = (key, value) => {
+    // Mark field as touched for validation
+    setFieldTouched(prev => ({ ...prev, [key]: true }));
+    
+    // Validate the field
+    const fieldErrors = validateField(key, value);
+    setValidationErrors(prev => ({
+      ...prev,
+      ...fieldErrors,
+      // Clear error if field is now valid
+      ...(Object.keys(fieldErrors).length === 0 && { [key]: undefined })
+    }));
+    
     setSettings(prev => {
       const newSettings = {
         ...prev,
@@ -173,6 +243,69 @@ const Settings = () => {
   
   const handleDeleteAccount = async () => {
     try {
+      setPendingDeletion(true);
+      
+      // Show undo toast for 10 seconds
+      const toastId = toast.warning(
+        <div>
+          <strong>Account deletion scheduled</strong>
+          <br />
+          <small>Your account will be deleted in 10 seconds</small>
+          <br />
+          <button 
+            className="btn btn-sm btn-outline-light mt-2"
+            onClick={() => handleUndoDelete(toastId)}
+          >
+            Undo Delete
+          </button>
+        </div>,
+        {
+          position: "top-center",
+          autoClose: 10000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: false,
+          onClose: () => {
+            if (pendingDeletion) {
+              executeAccountDeletion();
+            }
+          }
+        }
+      );
+
+      // Set timeout for actual deletion
+      const timeout = setTimeout(() => {
+        if (pendingDeletion) {
+          executeAccountDeletion();
+        }
+      }, 10000);
+      
+      setUndoTimeout(timeout);
+      setShowDeleteModal(false);
+      
+    } catch (error) {
+      console.error('Error scheduling account deletion:', error);
+      toast.error('Failed to schedule account deletion');
+      setPendingDeletion(false);
+    }
+  };
+
+  const handleUndoDelete = (toastId) => {
+    if (undoTimeout) {
+      clearTimeout(undoTimeout);
+      setUndoTimeout(null);
+    }
+    setPendingDeletion(false);
+    toast.dismiss(toastId);
+    toast.success('Account deletion cancelled', {
+      position: "top-center",
+      autoClose: 3000
+    });
+  };
+
+  const executeAccountDeletion = async () => {
+    try {
       await api.delete('/auth/me');
       localStorage.clear();
       sessionStorage.clear();
@@ -181,25 +314,21 @@ const Settings = () => {
     } catch (error) {
       console.error('Error deleting account:', error);
       toast.error('Failed to delete account. Please try again.');
+    } finally {
+      setPendingDeletion(false);
     }
   };
-  
-  if (loading) {
-    return (
-      <div className="settings-page">
-        <div className="container-fluid py-4">
-          <div className="d-flex justify-content-center align-items-center" style={{minHeight: '400px'}}>
-            <div className="spinner-border text-primary" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   const handleSaveSettings = async () => {
     setSaving(true);
+
+    // Prevent save if there are validation errors
+    if (Object.values(validationErrors).some(Boolean)) {
+      toast.error('Please fix the highlighted errors before saving.');
+      setSaving(false);
+      return;
+    }
+
     try {
       // Validate required fields
       if (!settings.firstName.trim()) {
@@ -447,63 +576,132 @@ const Settings = () => {
                       <UserIcon className="section-icon" />
                       Profile Information
                     </h4>
-                    
+
                     <div className="row g-3">
+                      {/* First Name */}
                       <div className="col-md-6">
-                        <label className="form-label">First Name</label>
+                        <label className="form-label" htmlFor="firstName">
+                          First Name <span className="text-danger">*</span>
+                        </label>
                         <input
+                          id="firstName"
                           type="text"
-                          className="form-control"
+                          className={`form-control ${getFieldError('firstName') ? 'is-invalid' : ''} ${isFieldValid('firstName') ? 'is-valid' : ''}`}
                           value={settings.firstName}
                           onChange={(e) => handleSettingChange('firstName', e.target.value)}
+                          aria-describedby={getFieldError('firstName') ? 'firstName-error' : 'firstName-help'}
+                          aria-invalid={!!getFieldError('firstName')}
+                          required
                         />
+                        {getFieldError('firstName') ? (
+                          <div id="firstName-error" className="invalid-feedback" role="alert">
+                            {getFieldError('firstName')}
+                          </div>
+                        ) : (
+                          <div id="firstName-help" className="form-text">
+                            Your first name as it appears on your profile
+                          </div>
+                        )}
                       </div>
+
+                      {/* Last Name */}
                       <div className="col-md-6">
-                        <label className="form-label">Last Name</label>
+                        <label className="form-label" htmlFor="lastName">Last Name</label>
                         <input
+                          id="lastName"
                           type="text"
-                          className="form-control"
+                          className={`form-control ${getFieldError('lastName') ? 'is-invalid' : ''} ${isFieldValid('lastName') ? 'is-valid' : ''}`}
                           value={settings.lastName}
                           onChange={(e) => handleSettingChange('lastName', e.target.value)}
+                          aria-describedby="lastName-help"
                         />
+                        <div id="lastName-help" className="form-text">
+                          Your last name (optional)
+                        </div>
                       </div>
+
+                      {/* Email */}
                       <div className="col-md-6">
-                        <label className="form-label">Email</label>
+                        <label className="form-label" htmlFor="email">
+                          Email <span className="text-danger">*</span>
+                        </label>
                         <div className="input-group">
                           <span className="input-group-text">
                             <EnvelopeIcon className="input-icon" />
                           </span>
                           <input
+                            id="email"
                             type="email"
-                            className="form-control"
+                            className={`form-control ${getFieldError('email') ? 'is-invalid' : ''} ${isFieldValid('email') ? 'is-valid' : ''}`}
                             value={settings.email}
                             onChange={(e) => handleSettingChange('email', e.target.value)}
+                            aria-describedby={getFieldError('email') ? 'email-error' : 'email-help'}
+                            aria-invalid={!!getFieldError('email')}
+                            required
                           />
                         </div>
+                        {getFieldError('email') ? (
+                          <div id="email-error" className="invalid-feedback" role="alert">
+                            {getFieldError('email')}
+                          </div>
+                        ) : (
+                          <div id="email-help" className="form-text">
+                            Used for login and notifications. Changes require verification.
+                          </div>
+                        )}
                       </div>
+
+                      {/* Phone */}
                       <div className="col-md-6">
-                        <label className="form-label">Phone</label>
+                        <label className="form-label" htmlFor="phone">Phone</label>
                         <div className="input-group">
                           <span className="input-group-text">
                             <DevicePhoneMobileIcon className="input-icon" />
                           </span>
                           <input
+                            id="phone"
                             type="tel"
-                            className="form-control"
+                            className={`form-control ${getFieldError('phone') ? 'is-invalid' : ''} ${isFieldValid('phone') ? 'is-valid' : ''}`}
                             value={settings.phone}
                             onChange={(e) => handleSettingChange('phone', e.target.value)}
+                            aria-describedby={getFieldError('phone') ? 'phone-error' : 'phone-help'}
+                            aria-invalid={!!getFieldError('phone')}
+                            placeholder="+1 (555) 123-4567"
                           />
                         </div>
+                        {getFieldError('phone') ? (
+                          <div id="phone-error" className="invalid-feedback" role="alert">
+                            {getFieldError('phone')}
+                          </div>
+                        ) : (
+                          <div id="phone-help" className="form-text">
+                            Optional. Include country code for international numbers.
+                          </div>
+                        )}
                       </div>
+
+                      {/* Bio */}
                       <div className="col-12">
-                        <label className="form-label">Bio</label>
+                        <label className="form-label" htmlFor="bio">Bio</label>
                         <textarea
-                          className="form-control"
+                          id="bio"
+                          className={`form-control ${getFieldError('bio') ? 'is-invalid' : ''} ${isFieldValid('bio') ? 'is-valid' : ''}`}
                           rows="3"
                           value={settings.bio}
                           onChange={(e) => handleSettingChange('bio', e.target.value)}
                           placeholder="Tell us about yourself..."
+                          aria-describedby={getFieldError('bio') ? 'bio-error' : 'bio-help'}
+                          aria-invalid={!!getFieldError('bio')}
+                          maxLength="500"
                         />
+                        {getFieldError('bio') ? (
+                          <div id="bio-error" className="invalid-feedback" role="alert">
+                            {getFieldError('bio')}
+                          </div>
+                        ) : null}
+                        <div id="bio-help" className="form-text">
+                          {settings.bio ? `${settings.bio.length}/500 characters` : '0/500 characters'}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -705,21 +903,51 @@ const Settings = () => {
                           <option value="CAD">CAD - Canadian Dollar</option>
                         </select>
                       </div>
-                      <div className="col-md-6">
-                        <label className="form-label">Theme</label>
-                        <div className="theme-toggle-section">
-                          <button
-                            className={`theme-option ${!isDark ? 'active' : ''}`}
-                            onClick={() => !isDark || toggleTheme()}
-                          >
-                            Light Mode
-                          </button>
-                          <button
-                            className={`theme-option ${isDark ? 'active' : ''}`}
-                            onClick={() => isDark || toggleTheme()}
-                          >
-                            Dark Mode
-                          </button>
+                      <div className="col-12">
+                        <div className="settings-group">
+                          <h5 className="settings-group-title d-flex align-items-center gap-2">
+                            <EyeIcon className="section-icon" style={{width: '20px', height: '20px'}} />
+                            Theme Appearance
+                          </h5>
+                          <p className="text-muted mb-3">Choose your preferred theme for the best visual experience</p>
+                          
+                          <div className="theme-toggle-container d-flex gap-3 flex-wrap justify-content-center">
+                            <button
+                              className={`theme-pill day ${!isDark ? 'active' : ''}`}
+                              onClick={() => !isDark || toggleTheme()}
+                              aria-pressed={!isDark}
+                              aria-label="Switch to light theme - Day Mode"
+                              title="Light Theme"
+                            >
+                              <span className="pill-text">Day Mode</span>
+                              <span className="pill-icon-wrapper">
+                                <SunIcon className="pill-icon" />
+                              </span>
+                            </button>
+
+                            <button
+                              className={`theme-pill night ${isDark ? 'active' : ''}`}
+                              onClick={() => isDark || toggleTheme()}
+                              aria-pressed={isDark}
+                              aria-label="Switch to dark theme - Night Mode"
+                              title="Dark Theme"
+                            >
+                              <span className="pill-icon-wrapper">
+                                <MoonIcon className="pill-icon" />
+                              </span>
+                              <span className="pill-text">Night Mode</span>
+                            </button>
+                          </div>
+                          
+                          <div className="theme-preview mt-3 text-center">
+                            <small className="text-muted">
+                              {isDark ? (
+                                <span>🌙 Dark theme is easier on the eyes in low light</span>
+                              ) : (
+                                <span>☀️ Light theme provides better readability in bright environments</span>
+                              )}
+                            </small>
+                          </div>
                         </div>
                       </div>
                       <div className="col-12">
@@ -812,10 +1040,11 @@ const Settings = () => {
                         <div className="col-12">
                           <button 
                             className="btn btn-outline-danger"
-                            onClick={() => setShowDeleteConfirm(true)}
+                            onClick={() => setShowDeleteModal(true)}
+                            disabled={pendingDeletion}
                           >
                             <TrashIcon className="me-2" style={{width: '16px', height: '16px'}} />
-                            Delete Account
+                            {pendingDeletion ? 'Deletion Pending...' : 'Delete Account'}
                           </button>
                           <small className="text-muted d-block mt-1">
                             Permanently delete your account and all data
@@ -831,7 +1060,7 @@ const Settings = () => {
                   <button 
                     className="btn btn-primary me-2"
                     onClick={handleSaveSettings}
-                    disabled={saving || !hasChanges}
+                    disabled={saving || !hasChanges || hasValidationErrors}
                   >
                     {saving ? (
                       <>
@@ -864,7 +1093,7 @@ const Settings = () => {
       </div>
 
       {/* Delete Confirmation Modal */}
-      {showDeleteConfirm && (
+      {showDeleteModal && (
         <div className="modal show d-block" tabIndex="-1">
           <div className="modal-dialog">
             <div className="modal-content">
@@ -873,7 +1102,7 @@ const Settings = () => {
                 <button 
                   type="button" 
                   className="btn-close"
-                  onClick={() => setShowDeleteConfirm(false)}
+                  onClick={() => setShowDeleteModal(false)}
                 ></button>
               </div>
               <div className="modal-body">
@@ -891,7 +1120,7 @@ const Settings = () => {
                 <button 
                   type="button" 
                   className="btn btn-secondary"
-                  onClick={() => setShowDeleteConfirm(false)}
+                  onClick={() => setShowDeleteModal(false)}
                 >
                   Cancel
                 </button>

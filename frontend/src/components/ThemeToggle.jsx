@@ -1,15 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useTheme } from '../contexts/ThemeContext';
 
 const ThemeToggle = () => {
   const { darkMode, toggleTheme } = useTheme();
   const [isAnimating, setIsAnimating] = useState(false);
+  const prevModeRef = useRef(darkMode);
 
   const handleToggle = () => {
-    setIsAnimating(true);
     toggleTheme();
-    setTimeout(() => setIsAnimating(false), 600);
   };
+
+  // Trigger animation whenever darkMode value changes (toggled anywhere in the app)
+  useEffect(() => {
+    if (prevModeRef.current !== darkMode) {
+      setIsAnimating(true);
+      const to = setTimeout(() => setIsAnimating(false), 600);
+      prevModeRef.current = darkMode;
+      return () => clearTimeout(to);
+    }
+  }, [darkMode]);
 
   const buttonStyle = {
     width: '48px',

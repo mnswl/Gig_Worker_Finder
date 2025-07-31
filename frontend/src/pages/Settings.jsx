@@ -529,11 +529,11 @@ const Settings = () => {
   };
 
   const tabs = [
-    { id: 'profile', label: 'Profile', icon: UserIcon },
-    { id: 'notifications', label: 'Notifications', icon: BellIcon },
-    { id: 'privacy', label: 'Privacy', icon: ShieldCheckIcon },
-    { id: 'preferences', label: 'Preferences', icon: GlobeAltIcon },
-    { id: 'account', label: 'Account', icon: KeyIcon }
+    { id: 'profile', label: t('settingsTabProfile'), icon: UserIcon },
+    { id: 'notifications', label: t('settingsTabNotifications'), icon: BellIcon },
+    { id: 'privacy', label: t('settingsTabPrivacy'), icon: ShieldCheckIcon },
+    { id: 'preferences', label: t('settingsTabPreferences'), icon: GlobeAltIcon },
+    { id: 'account', label: t('settingsTabAccount'), icon: KeyIcon }
   ];
 
   return (
@@ -544,7 +544,7 @@ const Settings = () => {
           <div className="col-lg-3 col-md-4 mb-4">
             <div className="settings-nav card">
               <div className="card-body p-0">
-                <h5 className="card-title p-3 mb-0 border-bottom">Settings</h5>
+                <h5 className="card-title p-3 mb-0 border-bottom">{t('settingsNavTitle')}</h5>
                 <nav className="nav flex-column">
                   {tabs.map(tab => {
                     const IconComponent = tab.icon;
@@ -574,14 +574,14 @@ const Settings = () => {
                   <div className="settings-section">
                     <h4 className="section-title d-flex align-items-center gap-2 mb-4">
                       <UserIcon className="section-icon" />
-                      Profile Information
+                      {t('settingsProfileHeading')}
                     </h4>
 
                     <div className="row g-3">
                       {/* First Name */}
                       <div className="col-md-6">
                         <label className="form-label" htmlFor="firstName">
-                          First Name <span className="text-danger">*</span>
+                          {t('settingsFirstNameLabel')} <span className="text-danger">*</span>
                         </label>
                         <input
                           id="firstName"
@@ -599,14 +599,14 @@ const Settings = () => {
                           </div>
                         ) : (
                           <div id="firstName-help" className="form-text">
-                            Your first name as it appears on your profile
+                            {t('settingsFirstNameHelp')}
                           </div>
                         )}
                       </div>
 
                       {/* Last Name */}
                       <div className="col-md-6">
-                        <label className="form-label" htmlFor="lastName">Last Name</label>
+                        <label className="form-label" htmlFor="lastName">{t('settingsLastNameLabel')}</label>
                         <input
                           id="lastName"
                           type="text"
@@ -616,14 +616,14 @@ const Settings = () => {
                           aria-describedby="lastName-help"
                         />
                         <div id="lastName-help" className="form-text">
-                          Your last name (optional)
+                          {t('settingsLastNameHelp')}
                         </div>
                       </div>
 
                       {/* Email */}
                       <div className="col-md-6">
                         <label className="form-label" htmlFor="email">
-                          Email <span className="text-danger">*</span>
+                          {t('settingsEmailLabel')} <span className="text-danger">*</span>
                         </label>
                         <div className="input-group">
                           <span className="input-group-text">
@@ -646,14 +646,14 @@ const Settings = () => {
                           </div>
                         ) : (
                           <div id="email-help" className="form-text">
-                            Used for login and notifications. Changes require verification.
+                            {t('settingsEmailHelp')}
                           </div>
                         )}
                       </div>
 
                       {/* Phone */}
                       <div className="col-md-6">
-                        <label className="form-label" htmlFor="phone">Phone</label>
+                        <label className="form-label" htmlFor="phone">{t('settingsPhoneLabel')}</label>
                         <div className="input-group">
                           <span className="input-group-text">
                             <DevicePhoneMobileIcon className="input-icon" />
@@ -675,21 +675,21 @@ const Settings = () => {
                           </div>
                         ) : (
                           <div id="phone-help" className="form-text">
-                            Optional. Include country code for international numbers.
+                            {t('settingsPhoneHelp')}
                           </div>
                         )}
                       </div>
 
                       {/* Bio */}
                       <div className="col-12">
-                        <label className="form-label" htmlFor="bio">Bio</label>
+                        <label className="form-label" htmlFor="bio">{t('settingsBioLabel')}</label>
                         <textarea
                           id="bio"
                           className={`form-control ${getFieldError('bio') ? 'is-invalid' : ''} ${isFieldValid('bio') ? 'is-valid' : ''}`}
                           rows="3"
                           value={settings.bio}
                           onChange={(e) => handleSettingChange('bio', e.target.value)}
-                          placeholder="Tell us about yourself..."
+                          placeholder={t('settingsBioPlaceholder')}
                           aria-describedby={getFieldError('bio') ? 'bio-error' : 'bio-help'}
                           aria-invalid={!!getFieldError('bio')}
                           maxLength="500"
@@ -700,7 +700,7 @@ const Settings = () => {
                           </div>
                         ) : null}
                         <div id="bio-help" className="form-text">
-                          {settings.bio ? `${settings.bio.length}/500 characters` : '0/500 characters'}
+                          {settings.bio ? t('settingsCharCount', { count: settings.bio.length }) : t('settingsCharCount', { count: 0 })}
                         </div>
                       </div>
                     </div>
@@ -712,11 +712,11 @@ const Settings = () => {
                   <div className="settings-section">
                     <h4 className="section-title d-flex align-items-center gap-2 mb-4">
                       <BellIcon className="section-icon" />
-                      Notification Preferences
+                      {t('settingsNotificationHeading')}
                     </h4>
                     
                     <div className="settings-group">
-                      <h6 className="settings-group-title">Communication</h6>
+                      <h6 className="settings-group-title">{t('settingsCommunication')}</h6>
                       <div className="row g-3">
                         <div className="col-12">
                           <div className="form-check form-switch">
@@ -727,8 +727,8 @@ const Settings = () => {
                               onChange={(e) => handleSettingChange('emailNotifications', e.target.checked)}
                             />
                             <label className="form-check-label">
-                              Email Notifications
-                              <small className="text-muted d-block">Receive updates via email</small>
+                              {t('settingsEmailNotificationsLabel')}
+                              <small className="text-muted d-block">{t('settingsEmailNotificationsDesc')}</small>
                             </label>
                           </div>
                         </div>
@@ -741,8 +741,8 @@ const Settings = () => {
                               onChange={(e) => handleSettingChange('pushNotifications', e.target.checked)}
                             />
                             <label className="form-check-label">
-                              Push Notifications
-                              <small className="text-muted d-block">Browser notifications</small>
+                              {t('settingsPushNotificationsLabel')}
+                              <small className="text-muted d-block">{t('settingsPushNotificationsDesc')}</small>
                             </label>
                           </div>
                         </div>
@@ -755,8 +755,8 @@ const Settings = () => {
                               onChange={(e) => handleSettingChange('smsNotifications', e.target.checked)}
                             />
                             <label className="form-check-label">
-                              SMS Notifications
-                              <small className="text-muted d-block">Text message alerts</small>
+                              {t('settingsSmsNotificationsLabel')}
+                              <small className="text-muted d-block">{t('settingsSmsNotificationsDesc')}</small>
                             </label>
                           </div>
                         </div>
@@ -764,7 +764,7 @@ const Settings = () => {
                     </div>
 
                     <div className="settings-group">
-                      <h6 className="settings-group-title">Content Alerts</h6>
+                      <h6 className="settings-group-title">{t('settingsContentAlerts')}</h6>
                       <div className="row g-3">
                         <div className="col-12">
                           <div className="form-check form-switch">
@@ -775,8 +775,8 @@ const Settings = () => {
                               onChange={(e) => handleSettingChange('jobAlerts', e.target.checked)}
                             />
                             <label className="form-check-label">
-                              Job Alerts
-                              <small className="text-muted d-block">New job postings matching your skills</small>
+                              {t('settingsJobAlertsLabel')}
+                              <small className="text-muted d-block">{t('settingsJobAlertsDesc')}</small>
                             </label>
                           </div>
                         </div>
@@ -789,8 +789,8 @@ const Settings = () => {
                               onChange={(e) => handleSettingChange('messageAlerts', e.target.checked)}
                             />
                             <label className="form-check-label">
-                              Message Alerts
-                              <small className="text-muted d-block">New messages and chat notifications</small>
+                              {t('settingsMessageAlertsLabel')}
+                              <small className="text-muted d-block">{t('settingsMessageAlertsDesc')}</small>
                             </label>
                           </div>
                         </div>
@@ -804,11 +804,11 @@ const Settings = () => {
                   <div className="settings-section">
                     <h4 className="section-title d-flex align-items-center gap-2 mb-4">
                       <ShieldCheckIcon className="section-icon" />
-                      Privacy & Security
+                      {t('settingsPrivacyHeading')}
                     </h4>
                     
                     <div className="settings-group">
-                      <h6 className="settings-group-title">Profile Visibility</h6>
+                      <h6 className="settings-group-title">{t('settingsProfileVisibility')}</h6>
                       <div className="row g-3">
                         <div className="col-12">
                           <select
@@ -816,9 +816,9 @@ const Settings = () => {
                             value={settings.profileVisibility}
                             onChange={(e) => handleSettingChange('profileVisibility', e.target.value)}
                           >
-                            <option value="public">Public - Anyone can view</option>
-                            <option value="registered">Registered Users Only</option>
-                            <option value="private">Private - Hidden from search</option>
+                            <option value="public">{t('settingsPublicOption')}</option>
+                            <option value="registered">{t('settingsRegisteredOption')}</option>
+                            <option value="private">{t('settingsPrivateOption')}</option>
                           </select>
                         </div>
                         <div className="col-12">
@@ -830,8 +830,8 @@ const Settings = () => {
                               onChange={(e) => handleSettingChange('showEmail', e.target.checked)}
                             />
                             <label className="form-check-label">
-                              Show Email Address
-                              <small className="text-muted d-block">Display email on your profile</small>
+                              {t('settingsShowEmailLabel')}
+                              <small className="text-muted d-block">{t('settingsShowEmailDesc')}</small>
                             </label>
                           </div>
                         </div>
@@ -844,8 +844,8 @@ const Settings = () => {
                               onChange={(e) => handleSettingChange('showPhone', e.target.checked)}
                             />
                             <label className="form-check-label">
-                              Show Phone Number
-                              <small className="text-muted d-block">Display phone on your profile</small>
+                              {t('settingsShowPhoneLabel')}
+                              <small className="text-muted d-block">{t('settingsShowPhoneDesc')}</small>
                             </label>
                           </div>
                         </div>
@@ -858,8 +858,8 @@ const Settings = () => {
                               onChange={(e) => handleSettingChange('allowMessages', e.target.checked)}
                             />
                             <label className="form-check-label">
-                              Allow Direct Messages
-                              <small className="text-muted d-block">Let other users message you</small>
+                              {t('settingsAllowMessagesLabel')}
+                              <small className="text-muted d-block">{t('settingsAllowMessagesDesc')}</small>
                             </label>
                           </div>
                         </div>
@@ -873,12 +873,12 @@ const Settings = () => {
                   <div className="settings-section">
                     <h4 className="section-title d-flex align-items-center gap-2 mb-4">
                       <GlobeAltIcon className="section-icon" />
-                      App Preferences
+                      {t('settingsPreferencesHeading')}
                     </h4>
                     
                     <div className="row g-3">
                       <div className="col-md-6">
-                        <label className="form-label">Language</label>
+                        <label className="form-label">{t('settingsLanguageLabel')}</label>
                         <select
                           className="form-select"
                           value={settings.language}
@@ -892,7 +892,7 @@ const Settings = () => {
                         </select>
                       </div>
                       <div className="col-md-6">
-                        <label className="form-label">Currency</label>
+                        <label className="form-label">{t('settingsCurrencyLabel')}</label>
                         <select
                           className="form-select"
                           value={settings.currency}
@@ -908,9 +908,9 @@ const Settings = () => {
                         <div className="settings-group">
                           <h5 className="settings-group-title d-flex align-items-center gap-2">
                             <EyeIcon className="section-icon" style={{width: '20px', height: '20px'}} />
-                            Theme Appearance
+                            {t('settingsThemeAppearance')}
                           </h5>
-                          <p className="text-muted mb-3">Choose your preferred theme for the best visual experience</p>
+                          <p className="text-muted mb-3">{t('settingsThemeDescription')}</p>
                           
                           <div className="theme-toggle-container d-flex gap-3 flex-wrap justify-content-center">
                             <button
@@ -920,7 +920,7 @@ const Settings = () => {
                               aria-label="Switch to light theme - Day Mode"
                               title="Light Theme"
                             >
-                              <span className="pill-text">Day Mode</span>
+                              <span className="pill-text">{t('settingsDayMode')}</span>
                               <span className="pill-icon-wrapper">
                                 <SunIcon className="pill-icon" />
                               </span>
@@ -936,16 +936,16 @@ const Settings = () => {
                               <span className="pill-icon-wrapper">
                                 <MoonIcon className="pill-icon" />
                               </span>
-                              <span className="pill-text">Night Mode</span>
+                              <span className="pill-text">{t('settingsNightMode')}</span>
                             </button>
                           </div>
                           
                           <div className="theme-preview mt-3 text-center">
                             <small className="text-muted">
                               {isDark ? (
-                                <span>🌙 Dark theme is easier on the eyes in low light</span>
+                                <span>🌙 {t('settingsDarkThemePreview')}</span>
                               ) : (
-                                <span>☀️ Light theme provides better readability in bright environments</span>
+                                <span>☀️ {t('settingsLightThemePreview')}</span>
                               )}
                             </small>
                           </div>
@@ -960,8 +960,8 @@ const Settings = () => {
                             onChange={(e) => handleSettingChange('autoSave', e.target.checked)}
                           />
                           <label className="form-check-label">
-                            Auto-save Changes
-                            <small className="text-muted d-block">Automatically save settings as you change them</small>
+                            {t('settingsAutoSaveLabel')}
+                            <small className="text-muted d-block">{t('settingsAutoSaveDesc')}</small>
                           </label>
                         </div>
                       </div>
@@ -974,8 +974,8 @@ const Settings = () => {
                             onChange={(e) => handleSettingChange('compactView', e.target.checked)}
                           />
                           <label className="form-check-label">
-                            Compact View
-                            <small className="text-muted d-block">Show more content in less space</small>
+                            {t('settingsCompactViewLabel')}
+                            <small className="text-muted d-block">{t('settingsCompactViewDesc')}</small>
                           </label>
                         </div>
                       </div>
@@ -988,55 +988,55 @@ const Settings = () => {
                   <div className="settings-section">
                     <h4 className="section-title d-flex align-items-center gap-2 mb-4">
                       <KeyIcon className="section-icon" />
-                      Account Management
+                      {t('settingsAccountHeading')}
                     </h4>
                     
                     <div className="settings-group">
-                      <h6 className="settings-group-title">Security</h6>
+                      <h6 className="settings-group-title">{t('settingsSecurityGroup')}</h6>
                       <div className="row g-3">
                         <div className="col-12">
                           <button className="btn btn-outline-primary">
-                            Change Password
+                            {t('settingsChangePasswordBtn')}
                           </button>
                           <small className="text-muted d-block mt-1">
-                            Last changed 3 months ago
+                            {t('settingsPasswordLastChanged')}
                           </small>
                         </div>
                         <div className="col-12">
                           <button className="btn btn-outline-secondary">
-                            Enable Two-Factor Authentication
+                            {t('settingsEnable2FABtn')}
                           </button>
                           <small className="text-muted d-block mt-1">
-                            Add an extra layer of security to your account
+                            {t('settings2FADesc')}
                           </small>
                         </div>
                       </div>
                     </div>
 
                     <div className="settings-group">
-                      <h6 className="settings-group-title">Data Management</h6>
+                      <h6 className="settings-group-title">{t('settingsDataManagementGroup')}</h6>
                       <div className="row g-3">
                         <div className="col-12">
                           <button className="btn btn-outline-info">
-                            Download My Data
+                            {t('settingsDownloadDataBtn')}
                           </button>
                           <small className="text-muted d-block mt-1">
-                            Export all your account data
+                            {t('settingsDownloadDataDesc')}
                           </small>
                         </div>
                         <div className="col-12">
                           <button className="btn btn-outline-warning">
-                            Deactivate Account
+                            {t('settingsDeactivateAccountBtn')}
                           </button>
                           <small className="text-muted d-block mt-1">
-                            Temporarily disable your account
+                            {t('settingsDeactivateAccountDesc')}
                           </small>
                         </div>
                       </div>
                     </div>
 
                     <div className="settings-group danger-zone">
-                      <h6 className="settings-group-title text-danger">Danger Zone</h6>
+                      <h6 className="settings-group-title text-danger">{t('settingsDangerZone')}</h6>
                       <div className="row g-3">
                         <div className="col-12">
                           <button 
@@ -1045,10 +1045,10 @@ const Settings = () => {
                             disabled={pendingDeletion}
                           >
                             <TrashIcon className="me-2" style={{width: '16px', height: '16px'}} />
-                            {pendingDeletion ? 'Deletion Pending...' : 'Delete Account'}
+                            {pendingDeletion ? t('settingsDeletionPending') : t('settingsDeleteAccountBtn')}
                           </button>
                           <small className="text-muted d-block mt-1">
-                            Permanently delete your account and all data
+                            {t('settingsDeleteAccountDesc')}
                           </small>
                         </div>
                       </div>
@@ -1066,12 +1066,12 @@ const Settings = () => {
                     {saving ? (
                       <>
                         <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                        Saving...
+                        {t('settingsSaving')}
                       </>
                     ) : (
                       <>
                         <CheckIcon className="me-2" style={{width: '16px', height: '16px'}} />
-                        Save Changes
+                        {t('settingsSaveChanges')}
                       </>
                     )}
                   </button>
@@ -1079,11 +1079,11 @@ const Settings = () => {
                     className="btn btn-outline-secondary"
                     onClick={handleResetToDefaults}
                   >
-                    Reset to Defaults
+                    {t('settingsResetToDefaults')}
                   </button>
                   {hasChanges && (
                     <small className="text-warning ms-3">
-                      You have unsaved changes
+                      {t('settingsUnsavedChanges')}
                     </small>
                   )}
                 </div>

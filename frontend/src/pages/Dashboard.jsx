@@ -307,7 +307,7 @@ function Dashboard() {
             {showForm ? t('cancel') : t('postJob')}
           </button>
           {user && !user.emailVerified && !user.phoneVerified && (
-        <div className="alert alert-warning">Verify your email or phone to post or apply for jobs.</div>
+        <div className="alert alert-warning">{t('verifyEmailPhoneAlert')}</div>
       )}
       {showForm && (
             <form className="card card-body mb-4" onSubmit={async e => {
@@ -358,7 +358,7 @@ function Dashboard() {
                     <option value="part-time">{t('partTime')}</option>
                     <option value="freelance">{t('freelance')}</option>
                     <option value="gig">{t('gig')}</option>
-                    <option value="online">Online</option>
+                    <option value="online">{t('online')}</option>
                   </select>
                 </div>
                 <div className="col-md-4">
@@ -385,28 +385,28 @@ function Dashboard() {
           <option value="oldest">{t('oldest')}</option>
           <option value="payHigh">{t('payHigh')}</option>
           <option value="payLow">{t('payLow')}</option>
-          <option value="titleAZ">Title A→Z</option>
-          <option value="titleZA">Title Z→A</option>
-          <option value="employerAZ">Client A→Z</option>
-          <option value="employerZA">Client Z→A</option>
+          <option value="titleAZ">{t('sortTitleAZ')}</option>
+          <option value="titleZA">{t('sortTitleZA')}</option>
+          <option value="employerAZ">{t('sortClientAZ')}</option>
+          <option value="employerZA">{t('sortClientZA')}</option>
         </select>
         <select className="form-select" style={{maxWidth:'200px'}} value={typeFilter} onChange={e=>setTypeFilter(e.target.value)}>
-          <option value="all">All Types</option>
+          <option value="all">{t('allTypes')}</option>
           <option value="full-time">{t('fullTime')}</option>
           <option value="part-time">{t('partTime')}</option>
           <option value="freelance">{t('freelance')}</option>
           <option value="gig">{t('gig')}</option>
-                    <option value="online">Online</option>
+                    <option value="online">{t('online')}</option>
         </select>
         <button className={`btn btn-${bookmarkedOnly ? 'warning' : 'outline-warning'} ms-2`} onClick={() => setBookmarkedOnly(prev => !prev)}>
-          {bookmarkedOnly ? 'All Jobs' : 'Bookmarked'}
+          {bookmarkedOnly ? t('allJobs') : t('bookmarked')}
         </button>
         <button className={`btn btn-${hiddenOnly ? 'danger' : 'outline-danger'} ms-2`} onClick={() => setHiddenOnly(prev => !prev)}>
-          {hiddenOnly ? 'All Jobs' : 'Hidden'}
+          {hiddenOnly ? t('allJobs') : t('hidden')}
         </button>
         <div className="form-check d-flex align-items-center">
           <input className="form-check-input" type="checkbox" id="remoteOnly" checked={remoteOnly} onChange={e=>setRemoteOnly(e.target.checked)} />
-          <label className="form-check-label ms-1" htmlFor="remoteOnly">Remote</label>
+          <label className="form-check-label ms-1" htmlFor="remoteOnly">{t('remote')}</label>
         </div>
         
         <select className="form-select" style={{maxWidth:'120px'}} value={pageSize} onChange={e=>setPageSize(Number(e.target.value))}>
@@ -417,17 +417,17 @@ function Dashboard() {
         </select>
         <div className="form-check d-flex align-items-center">
           <input className="form-check-input" type="checkbox" id="densityToggle" checked={dense} onChange={e=>setDense(e.target.checked)} />
-          <label className="form-check-label ms-1" htmlFor="densityToggle">Compact</label>
+          <label className="form-check-label ms-1" htmlFor="densityToggle">{t('compact')}</label>
         </div>
       </div>
       {selectedIds.length>0 && (
         <div className="alert alert-info d-flex flex-wrap gap-2 align-items-center">
           <strong>{selectedIds.length} selected</strong>
-          {role === 'worker' && <button className="btn btn-sm btn-primary" onClick={handleBulkApply}>Apply</button>}
-          <button className="btn btn-sm btn-outline-secondary" onClick={handleBulkBookmark}>Bookmark</button>
-          <button className="btn btn-sm btn-outline-danger" onClick={handleBulkHide}>Hide</button>
-          <button className="btn btn-sm btn-outline-success" onClick={handleBulkUnhide}>Unhide</button>
-          <button className="btn btn-sm btn-link" onClick={()=>setSelectedIds([])}>Clear</button>
+          {role === 'worker' && <button className="btn btn-sm btn-primary" onClick={handleBulkApply}>{t('apply')}</button>}
+          <button className="btn btn-sm btn-outline-secondary" onClick={handleBulkBookmark}>{t('bookmark')}</button>
+          <button className="btn btn-sm btn-outline-danger" onClick={handleBulkHide}>{t('hide')}</button>
+          <button className="btn btn-sm btn-outline-success" onClick={handleBulkUnhide}>{t('unhide')}</button>
+          <button className="btn btn-sm btn-link" onClick={()=>setSelectedIds([])}>{t('clear')}</button>
         </div>
       )}
       {sortedJobs.length === 0 ? (
@@ -515,19 +515,19 @@ function Dashboard() {
                       if (applied.includes(job._id)) {
                         await api.post(`/jobs/${job._id}/unapply`);
                         setApplied(prev => prev.filter(id => id !== job._id));
-                        toast.info('Application withdrawn');
+                        toast.info(t('withdraw'));
                       } else {
                         const msg = window.prompt('Optional message to client (leave blank for none):','');
                         await api.post(`/jobs/${job._id}/apply`, { message: msg });
                         setApplied(prev => [...prev, job._id]);
-                        toast.success('Applied!');
+                        toast.success(t('applied'));
                       }
                     } catch (err) {
                       toast.error(err.response?.data?.msg || 'Action failed');
                     }
                   }}
                 >
-                  {applied.includes(job._id) ? 'Unapply' : 'Apply'}
+                  {applied.includes(job._id) ? t('unapply') : t('apply')}
                 </button>
               )}
               {role === 'employer' && (job.employer && ((job.employer._id || job.employer) === myId)) && (

@@ -8,6 +8,7 @@ import useScrollReveal from '../hooks/useScrollReveal';
 import useCountUp from '../hooks/useCountUp';
 import useParallax from '../hooks/useParallax';
 import useSmoothScrollAnimations from '../hooks/useSmoothScrollAnimations';
+import { useTranslation } from 'react-i18next';
 
 const avatar1 = 'https://i.pravatar.cc/120?img=1';
 const avatar2 = 'https://i.pravatar.cc/120?img=2';
@@ -23,6 +24,7 @@ function Home() {
   useCountUp();
   useParallax();
   useSmoothScrollAnimations();
+  const { t } = useTranslation();
 
   
 
@@ -36,9 +38,9 @@ function Home() {
             <img src="/logo_2.jpg" alt="Gig Worker Finder" className="hero-img img-fluid" />
           </Link>
           <div className="text-center text-md-start">
-            <h1>Find the Right Gig. <br/> Grow Your Career.</h1>
-            <p>Browse thousands of flexible jobs and connect instantly with clients looking for talent like you.</p>
-            <Link to="/register" ref={joinRef} onClick={() => pulse(joinRef.current)} className="btn join-btn">Join Now</Link>
+            <h1>{t('homeHeroHeading1')} <br/> {t('homeHeroHeading2')}</h1>
+            <p>{t('homeHeroDesc')}</p>
+            <Link to="/register" ref={joinRef} onClick={() => pulse(joinRef.current)} className="btn join-btn">{t('joinNow')}</Link>
           </div>
         </div>
 
@@ -52,27 +54,27 @@ function Home() {
       {/* Features */}
       <section className="features py-5 bg-light" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
         <div className="container">
-          <h2 className="section-title text-center mb-5" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">Why Choose Gig Worker Finder?</h2>
+          <h2 className="section-title text-center mb-5" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">{t('homeWhyChooseTitle')}</h2>
           <div className="row text-center">
             <div className="col-md-4 mb-4" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
               <div className="feature-card reveal p-4 h-100 shadow-sm bg-white rounded">
                 <div className="icon-circle bg-primary text-white mb-3 mx-auto fs-3">💼</div>
-                <h5 className="fw-bold mb-2">Diverse Opportunities</h5>
-                <p className="text-muted mb-0">Thousands of gigs across design, tech, marketing, admin and more – updated daily.</p>
+                <h5 className="fw-bold mb-2">{t('homeFeature1Title')}</h5>
+                <p className="text-muted mb-0">{t('homeFeature1Desc')}</p>
               </div>
             </div>
             <div className="col-md-4 mb-4" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
               <div className="feature-card reveal p-4 h-100 shadow-sm bg-white rounded">
                 <div className="icon-circle bg-success text-white mb-3 mx-auto fs-3">⚡️</div>
-                <h5 className="fw-bold mb-2">Instant Connections</h5>
-                <p className="text-muted mb-0">Chat with clients in real-time and get hired faster with our smart matching engine.</p>
+                <h5 className="fw-bold mb-2">{t('homeFeature2Title')}</h5>
+                <p className="text-muted mb-0">{t('homeFeature2Desc')}</p>
               </div>
             </div>
             <div className="col-md-4 mb-4" data-aos="fade-up" data-aos-duration="800" data-aos-delay="500">
               <div className="feature-card reveal p-4 h-100 shadow-sm bg-white rounded">
                 <div className="icon-circle bg-warning text-white mb-3 mx-auto fs-3">🔒</div>
-                <h5 className="fw-bold mb-2">Secure & Transparent</h5>
-                <p className="text-muted mb-0">Two-factor authentication and milestone payments keep your account and earnings safe.</p>
+                <h5 className="fw-bold mb-2">{t('homeFeature3Title')}</h5>
+                <p className="text-muted mb-0">{t('homeFeature3Desc')}</p>
               </div>
             </div>
           </div>
@@ -82,22 +84,22 @@ function Home() {
       {/* How it works */}
       <section className="how-it-works py-5" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
         <div className="container">
-          <h2 className="section-title text-center mb-5" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">How It Works</h2>
+          <h2 className="section-title text-center mb-5" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">{t('homeHowWorksTitle')}</h2>
           <div className="row justify-content-center text-center gy-4">
             <div className="col-md-3 step" data-aos="fade-right" data-aos-duration="800" data-aos-delay="300">
               <div className="icon-circle bg-primary-subtle text-primary mb-3 fs-3">1</div>
-              <h6 className="fw-bold mb-2">Create Your Profile</h6>
-              <p className="text-muted">Sign up, verify your account and showcase your skills with a standout profile.</p>
+              <h6 className="fw-bold mb-2">{t('homeStep1Title')}</h6>
+              <p className="text-muted">{t('homeStep1Desc')}</p>
             </div>
             <div className="col-md-3 step" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
               <div className="icon-circle bg-primary-subtle text-primary mb-3 fs-3">2</div>
-              <h6 className="fw-bold mb-2">Browse & Apply</h6>
-              <p className="text-muted">Use advanced filters to discover gigs that fit your schedule and passion.</p>
+              <h6 className="fw-bold mb-2">{t('homeStep2Title')}</h6>
+              <p className="text-muted">{t('homeStep2Desc')}</p>
             </div>
             <div className="col-md-3 step" data-aos="fade-left" data-aos-duration="800" data-aos-delay="500">
               <div className="icon-circle bg-primary-subtle text-primary mb-3 fs-3">3</div>
-              <h6 className="fw-bold mb-2">Get Hired & Paid</h6>
-              <p className="text-muted">Communicate seamlessly, deliver quality work and receive payments on time.</p>
+              <h6 className="fw-bold mb-2">{t('homeStep3Title')}</h6>
+              <p className="text-muted">{t('homeStep3Desc')}</p>
             </div>
           </div>
         </div>
@@ -109,19 +111,19 @@ function Home() {
           <div className="row gy-4">
             <div className="col-6 col-md-3" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
               <h3 className="fw-bold">{`${stats.jobs}K`}</h3>
-              <p className="text-muted mb-0">Gigs Posted</p>
+              <p className="text-muted mb-0">{t('statsGigsPosted')}</p>
             </div>
             <div className="col-6 col-md-3" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
               <h3 className="fw-bold">{`${stats.freelancers}K`}</h3>
-              <p className="text-muted mb-0">Active Freelancers</p>
+              <p className="text-muted mb-0">{t('statsActiveFreelancers')}</p>
             </div>
             <div className="col-6 col-md-3" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
               <h3 className="fw-bold">{`${stats.clients}K`}</h3>
-              <p className="text-muted mb-0">Clients</p>
+              <p className="text-muted mb-0">{t('statsClients')}</p>
             </div>
             <div className="col-6 col-md-3" data-aos="fade-up" data-aos-duration="800" data-aos-delay="500">
               <h3 className="fw-bold">98.7%</h3>
-              <p className="text-muted mb-0">Job Success</p>
+              <p className="text-muted mb-0">{t('statsJobSuccess')}</p>
             </div>
           </div>
         </div>
@@ -130,37 +132,37 @@ function Home() {
       {/* Featured Categories */}
       <section className="categories py-5" data-aos="fade-up">
         <div className="container">
-          <h2 className="section-title text-center mb-5">Explore Popular Categories</h2>
+          <h2 className="section-title text-center mb-5">{t('homeCategoriesTitle')}</h2>
           <div className="row g-4">
             <div className="col-md-4 col-lg-3">
               <Link to="/jobs?cat=software-development" className="category-card reveal p-4 h-100 shadow-sm bg-white rounded text-decoration-none text-reset position-relative" data-aos="fade-up">
                 <div className="icon-circle bg-primary text-white mb-3 mx-auto fs-3">💻</div>
-                <h5 className="fw-bold mb-2">Software Development</h5>
-                <p className="text-muted mb-0">Full-stack developers, mobile apps, web development</p>
+                <h5 className="fw-bold mb-2">{t('categorySoftwareDevTitle')}</h5>
+                <p className="text-muted mb-0">{t('categorySoftwareDevDesc')}</p>
                 <span className="stretched-link" />
               </Link>
             </div>
             <div className="col-md-4 col-lg-3">
               <Link to="/jobs?cat=design-creative" className="category-card reveal p-4 h-100 shadow-sm bg-white rounded text-decoration-none text-reset position-relative" data-aos="fade-up">
                 <div className="icon-circle bg-success text-white mb-3 mx-auto fs-3">🎨</div>
-                <h5 className="fw-bold mb-2">Design & Creative</h5>
-                <p className="text-muted mb-0">UI/UX, graphic design, video editing</p>
+                <h5 className="fw-bold mb-2">{t('categoryDesignCreativeTitle')}</h5>
+                <p className="text-muted mb-0">{t('categoryDesignCreativeDesc')}</p>
                 <span className="stretched-link" />
               </Link>
             </div>
             <div className="col-md-4 col-lg-3">
               <Link to="/jobs?cat=marketing-sales" className="category-card reveal p-4 h-100 shadow-sm bg-white rounded text-decoration-none text-reset position-relative" data-aos="fade-up">
                 <div className="icon-circle bg-warning text-white mb-3 mx-auto fs-3">📊</div>
-                <h5 className="fw-bold mb-2">Marketing & Sales</h5>
-                <p className="text-muted mb-0">Digital marketing, SEO, content writing</p>
+                <h5 className="fw-bold mb-2">{t('categoryMarketingSalesTitle')}</h5>
+                <p className="text-muted mb-0">{t('categoryMarketingSalesDesc')}</p>
                 <span className="stretched-link" />
               </Link>
             </div>
             <div className="col-md-4 col-lg-3">
               <Link to="/jobs?cat=writing-translation" className="category-card reveal p-4 h-100 shadow-sm bg-white rounded text-decoration-none text-reset position-relative" data-aos="fade-up">
                 <div className="icon-circle bg-info text-white mb-3 mx-auto fs-3">📝</div>
-                <h5 className="fw-bold mb-2">Writing & Translation</h5>
-                <p className="text-muted mb-0">Technical writing, copywriting, translation</p>
+                <h5 className="fw-bold mb-2">{t('categoryWritingTranslationTitle')}</h5>
+                <p className="text-muted mb-0">{t('categoryWritingTranslationDesc')}</p>
                 <span className="stretched-link" />
               </Link>
             </div>
@@ -171,7 +173,7 @@ function Home() {
       {/* Testimonials */}
       <section className="testimonials py-5" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
         <div className="container">
-          <h2 className="section-title text-center mb-5" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">Success Stories</h2>
+          <h2 className="section-title text-center mb-5" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">{t('homeSuccessTitle')}</h2>
           <div className="row gy-4">
             <div className="col-md-4" data-aos="fade-right" data-aos-duration="800" data-aos-delay="300">
               <div className="testimonial-card reveal p-4 bg-white shadow-sm h-100 rounded">

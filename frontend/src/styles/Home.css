@@ -12,14 +12,51 @@
 }
 
 .hero h1 {
-  font-size: 3rem;
-  font-weight: 700;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: 0.5px;
 }
 
 .hero p {
   max-width: 420px;
-  font-size: 1.1rem;
+  font-size: 1.125rem;
+  line-height: 1.6;
   margin-bottom: 24px;
+}
+
+/* Improve hero text visibility in both themes */
+body:not(.dark) .hero h1,
+body:not(.dark) .hero p {
+  color: #1b1d25; /* dark text for light gradient */
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.85), 0 0 6px rgba(255,255,255,0.65);
+}
+
+body.dark .hero h1,
+body.dark .hero p {
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.85), 0 0 6px rgba(0,0,0,0.65);
+}
+
+/* Glassmorphic container around hero headline for better readability */
+.headline-box {
+  display: inline-block;
+  padding: 1.5rem 2rem;
+  border-radius: 0.75rem;
+  backdrop-filter: blur(8px) saturate(180%);
+  -webkit-backdrop-filter: blur(8px) saturate(180%);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+body:not(.dark) .headline-box {
+  background-color: rgba(255, 255, 255, 0.55);
+  color: #1b1d25;
+}
+
+body.dark .headline-box {
+  background-color: rgba(0, 0, 0, 0.45);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.55);
 }
 
 .hero .join-btn {

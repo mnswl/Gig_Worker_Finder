@@ -26,20 +26,20 @@ const GlassmorphicNav = ({ token, handleLogout, lng, changeLanguage }) => {
 
   // Navigation items for authenticated users
   const authenticatedNavItems = [
-    { path: '/', icon: HomeIcon, label: 'Home', key: 'home' },
+    { path: '/', icon: HomeIcon, label: t('home'), key: 'home' },
     { path: '/dashboard', icon: ChartBarIcon, label: t('dashboard'), key: 'dashboard' },
     { path: '/profile', icon: UserIcon, label: t('myProfile'), key: 'profile' },
     { path: '/chat', icon: ChatBubbleLeftRightIcon, label: t('chat'), key: 'chat' },
-    { path: '/settings', icon: Cog6ToothIcon, label: 'Settings', key: 'settings' },
+    { path: '/settings', icon: Cog6ToothIcon, label: t('settings'), key: 'settings' },
     { path: '/about', icon: InformationCircleIcon, label: t('about'), key: 'about' },
-    { path: '/contact', icon: PhoneIcon, label: 'Contact', key: 'contact' },
+    { path: '/contact', icon: PhoneIcon, label: t('contact'), key: 'contact' },
   ];
 
   // Navigation items for non-authenticated users
   const guestNavItems = [
-    { path: '/', icon: HomeIcon, label: 'Home', key: 'home' },
-    { path: '/about', icon: InformationCircleIcon, label: 'About', key: 'about' },
-    { path: '/contact', icon: PhoneIcon, label: 'Contact', key: 'contact' },
+    { path: '/', icon: HomeIcon, label: t('home'), key: 'home' },
+    { path: '/about', icon: InformationCircleIcon, label: t('about'), key: 'about' },
+    { path: '/contact', icon: PhoneIcon, label: t('contact'), key: 'contact' },
     { path: '/login', icon: ArrowLeftOnRectangleIcon, label: t('login'), key: 'login' },
     { path: '/register', icon: UserPlusIcon, label: t('signUp'), key: 'signup' },
   ];

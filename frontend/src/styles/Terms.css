@@ -3,3 +3,18 @@
 .terms-wrapper h3{color:#444;font-weight:600;margin-top:1rem;}
 .terms-wrapper p,.terms-wrapper li{font-size:1rem;line-height:1.6;color:#555;}
 .terms-wrapper ul{list-style:disc;padding-left:1.25rem;}
+
+/* Dark mode overrides for better contrast */
+body.dark .terms-wrapper h1{
+  color:#D6D6FF; /* lighter lavender */
+}
+body.dark .terms-wrapper h2{
+  color:#E5E5E5;
+}
+body.dark .terms-wrapper h3{
+  color:#CCCCCC;
+}
+body.dark .terms-wrapper p,
+body.dark .terms-wrapper li{
+  color:#BFBFBF; /* light gray for readability */
+}

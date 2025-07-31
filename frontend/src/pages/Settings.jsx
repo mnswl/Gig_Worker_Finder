@@ -882,9 +882,10 @@ const Settings = () => {
                         <select
                           className="form-select"
                           value={settings.language}
-                          onChange={(e) => handleLanguageChange(e.target.value)}
+                          onChange={(e) => handleSettingChange('language', e.target.value)}
                         >
                           <option value="en">English</option>
+                          <option value="si">සිංහල</option>
                           <option value="es">Español</option>
                           <option value="fr">Français</option>
                           <option value="de">Deutsch</option>

@@ -20,6 +20,45 @@
   padding: 0.75rem !important;
 }
 
+/* Improve checkbox visibility in light mode */
+body:not(.dark) .job-card input[type="checkbox"] {
+  width: 16px !important;
+  height: 16px !important;
+  margin-right: 0.5rem !important;
+  accent-color: #4f46e5 !important; /* Indigo-600 for clear visibility */
+  border: 1px solid #9ca3af !important; /* Gray-400 border */
+  border-radius: 3px !important;
+}
+
+/* Improve checkbox visibility in dark mode */
+body.dark .job-card input[type="checkbox"] {
+  width: 16px !important;
+  height: 16px !important;
+  margin-right: 0.5rem !important;
+  accent-color: #22d3ee !important; /* Cyan-400 for dark background */
+  border: 1px solid #4b5563 !important; /* Gray-600 border */
+  border-radius: 3px !important;
+}
+
+/* Common checkbox tweaks */
+.job-card input[type="checkbox"] {
+  position: relative !important;
+  z-index: 2 !important;
+  vertical-align: middle !important;
+}
+
+/* Smaller checkbox in compact view (both themes) */
+.job-card.compact input[type="checkbox"] {
+  width: 12px !important;
+  height: 12px !important;
+  margin-right: 0.4rem !important;
+}
+
+/* Smooth transition between normal and compact */
+.job-card, .job-card .card-body, .job-card h5, .job-card .badge, .job-card .text-muted, .job-card button {
+  transition: padding 0.25s ease, height 0.25s ease, font-size 0.25s ease, transform 0.25s ease;
+}
+
 /* Ensure cards don't overlap during animations */
 .job-card.animating {
   z-index: 5 !important;

@@ -201,6 +201,14 @@ const Settings = () => {
         ...prev,
         [key]: value
       };
+
+      // If compact view preference changes, update dashboardPrefs as well
+      if(key === 'compactView'){
+        const prefsKey = 'dashboardPrefs';
+        const existing = JSON.parse(localStorage.getItem(prefsKey) || '{}');
+        localStorage.setItem(prefsKey, JSON.stringify({ ...existing, dense: value }));
+      }
+
       return newSettings;
     });
     setHasChanges(true);

@@ -433,7 +433,7 @@ function Dashboard() {
       {sortedJobs.length === 0 ? (
         <p>{t('noJobs')}</p>
       ) : (
-        <ul className="list-unstyled row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <ul className={`list-unstyled row ${dense ? 'row-cols-1 g-0' : 'row-cols-1 row-cols-md-2 row-cols-lg-3 g-4'}`}>
           {currentJobs.map((job) => (
             <li key={job._id} tabIndex="0" className={`col job-card card h-100 ${dense ? 'compact ' : ''}job-type-${job.type}`} onMouseEnter={e=>jobCardHover(true, e.currentTarget)} onMouseLeave={e=>jobCardHover(false, e.currentTarget)}>
               <div className="card-body w-100 d-flex flex-column align-items-center text-center">

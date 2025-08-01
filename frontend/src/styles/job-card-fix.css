@@ -84,11 +84,142 @@
   z-index: 0 !important;
 }
 
+/* Reduce vertical gap in normal grid (g-4) */
+.row.g-4 {
+  --bs-gutter-y: 0.5rem !important; /* default 1.5rem */
+}
+
+/* Remove all gutters when compact (row.g-0) */
+.row.g-0 {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+.row.g-0 > [class*='col'] {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+}
+
+
 /* Fix for compact mode */
 .job-card.compact {
-  min-height: 200px !important;
-  margin-bottom: 1rem !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  min-height: 24px !important;
+  padding: 0.25rem 0.75rem !important;
+  margin-bottom: 0 !important;
+  font-size: 0.7rem !important;
+  background: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(255,255,255,0.06) !important;
 }
+
+body:not(.dark) .job-card.compact {
+  border-bottom: 1px solid rgba(0,0,0,0.1) !important;
+}
+
+.job-card.compact .card-body {
+  flex: 1 1 auto !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 0.2rem !important;
+  padding: 0 !important;
+  text-align: start !important;
+}
+
+.job-card.compact h5 {
+  flex: 2 1 0;
+  font-size: 0.75rem !important;
+  margin: 0 !important;
+}
+
+.job-card.compact .badge {
+  flex: 0 0 auto;
+  font-size: 0.7rem !important;
+}
+
+/* cleaner compact view with all elements */
+.job-card.compact.h-100 {
+  height: auto !important;
+  min-height: 40px !important;
+  max-height: 40px !important;
+}
+
+.job-card.compact {
+  min-height: 40px !important;
+  max-height: 40px !important;
+  height: 40px !important;
+  padding: 0 !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+.job-card.compact .card-body {
+  background: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0.1rem 0.3rem !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+
+.job-card.compact h5 {
+  font-size: 0.65rem !important;
+  margin: 0 !important;
+  flex: 1 1 auto;
+}
+
+.job-card.compact .badge {
+  font-size: 0.55rem !important;
+  padding: 0.2rem 0.4rem !important;
+}
+
+.job-card.compact .text-muted {
+  font-size: 0.6rem !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  max-width: 200px !important;
+}
+
+.job-card.compact button {
+  font-size: 0.6rem !important;
+  padding: 0.2rem 0.6rem !important;
+}
+
+.job-card.compact br {
+  display: none !important;
+}
+
+.job-card.compact .apply-btn, /* target button class if exists */
+.job-card.compact button {
+  margin-left: auto !important;
+  font-size: 0.75rem !important;
+  padding: 0.25rem 0.75rem !important;
+}
+
+
+.job-card.compact .card-body {
+  padding: 0.5rem !important;
+}
+
+.job-card.compact h5 {
+  font-size: 1rem !important;
+  margin-bottom: 0.25rem !important;
+}
+
+.job-card.compact .badge {
+  font-size: 0.7rem !important;
+  padding: 0.25rem 0.4rem !important;
+}
+
 
 /* Ensure proper card dimensions */
 .job-card.card {

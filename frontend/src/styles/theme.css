@@ -356,6 +356,27 @@ a:hover {
 }
 
 /* Smooth transitions for theme changes */
+.theme-transition *, .theme-transition {
+  transition: background-color 0.5s ease, background 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.4s ease, transform 0.4s ease !important;
+}
+
+/* Staggered animation for job cards */
+.job-card {
+  transition-delay: calc(var(--card-index, 0) * 0.1s);
+}
+
+.job-card:nth-child(1) { --card-index: 0; }
+.job-card:nth-child(2) { --card-index: 1; }
+.job-card:nth-child(3) { --card-index: 2; }
+.job-card:nth-child(4) { --card-index: 3; }
+.job-card:nth-child(5) { --card-index: 4; }
+.job-card:nth-child(6) { --card-index: 5; }
+.job-card:nth-child(7) { --card-index: 6; }
+.job-card:nth-child(8) { --card-index: 7; }
+.job-card:nth-child(9) { --card-index: 8; }
+.job-card:nth-child(10) { --card-index: 9; }
+.job-card:nth-child(11) { --card-index: 10; }
+.job-card:nth-child(12) { --card-index: 11; }
 *:not(.no-transition),
 *:not(.no-transition)::before,
 *:not(.no-transition)::after {

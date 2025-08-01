@@ -355,6 +355,7 @@ body:not(.dark) .settings-page .settings-nav .nav-link.active {
   backdrop-filter: blur(8px);
   transition: all 0.3s ease;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden; /* hide square icon corners during rotation */
 }
 
 .theme-pill.active .pill-icon-wrapper {
@@ -367,12 +368,12 @@ body:not(.dark) .settings-page .settings-nav .nav-link.active {
   width: 26px;
   height: 26px;
   transition: all 0.3s ease;
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+  border-radius: 50%;
 }
 
 .theme-pill.active .pill-icon {
   transform: rotate(360deg);
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  filter: none;
 }
 
 /* Theme Toggle Container */

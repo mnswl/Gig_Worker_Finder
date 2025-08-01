@@ -23,7 +23,16 @@ export const ThemeProvider = ({ children }) => {
     localStorage.setItem('darkMode', JSON.stringify(darkMode));
   }, [darkMode]);
 
-  const toggleTheme = () => setDarkMode(prev => !prev);
+  const toggleTheme = () => {
+    // Add a transient class so only this frame animates
+    document.documentElement.classList.add('theme-transition');
+    // Remove class after duration to avoid lingering transitions
+    setTimeout(()=>{
+      document.documentElement.classList.remove('theme-transition');
+    }, 900);
+    // Trigger theme change
+    setDarkMode(prev=>!prev);
+};
 
   return (
     <ThemeContext.Provider value={{ darkMode, toggleTheme }}>

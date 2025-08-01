@@ -51,6 +51,17 @@ function Home() {
         <div className="bubble b5"><img src={avatar5} alt="Freelancer avatar" /></div>
       </section>
 
+      {/* Currency Converter CTA (moved below) */}
+      <section className="converter-cta py-5 bg-white d-none" data-aos="fade-up" data-aos-duration="800" data-aos-delay="150">
+        <div className="container text-center">
+          <h2 className="fw-bold mb-3">Built-in Currency Converter &amp; Live Exchange-Rate Charts</h2>
+          <p className="lead text-muted mb-4">Convert between 170+ currencies and visualize historical trends with interactive charts—all directly inside Gig Worker Finder.</p>
+          <Link to="/converter" className="btn btn-success btn-lg px-4">
+            Try the Converter
+          </Link>
+        </div>
+      </section>
+
       {/* Features */}
       <section className="features py-5 bg-light" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
         <div className="container">
@@ -78,6 +89,17 @@ function Home() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Currency Converter CTA */}
+      <section className="converter-cta py-5 bg-light" data-aos="fade-up" data-aos-duration="800" data-aos-delay="150">
+        <div className="container text-center">
+          <h2 className="fw-bold mb-3">Built-in Currency Converter &amp; Live Exchange-Rate Charts</h2>
+          <p className="lead text-muted mb-4">Convert between 170+ currencies and visualize historical trends with interactive charts—all directly inside Gig Worker Finder.</p>
+          <Link to="/converter" className="btn btn-success btn-lg px-4">
+            Try the Converter
+          </Link>
         </div>
       </section>
 
@@ -256,6 +278,17 @@ function Home() {
               </Link>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Currency Converter CTA */}
+      <section className="converter-cta py-5 bg-white d-none" data-aos="fade-up" data-aos-duration="800" data-aos-delay="150">
+        <div className="container text-center">
+          <h2 className="fw-bold mb-3">Built-in Currency Converter &amp; Live Exchange-Rate Charts</h2>
+          <p className="lead text-muted mb-4">Convert between 170+ currencies and visualize historical trends with interactive charts—all directly inside Gig Worker Finder.</p>
+          <Link to="/converter" className="btn btn-success btn-lg px-4">
+            Try the Converter
+          </Link>
         </div>
       </section>
 

@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
  */
 export default function useExchangeRates(base) {
   const [rates, setRates] = useState(null);
+  const [lastUpdated, setLastUpdated] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -25,6 +26,7 @@ export default function useExchangeRates(base) {
         const cached = JSON.parse(cachedRaw);
         if (cached.date === today && cached.data) {
           setRates(cached.data);
+          setLastUpdated(new Date(cached.ts || cached.date));
           setLoading(false);
           return; // fresh cache
         }
@@ -86,7 +88,8 @@ export default function useExchangeRates(base) {
           }
           if (!r) throw new Error(`${p.name} missing rates`);
           setRates(r);
-          localStorage.setItem(STORAGE_KEY, JSON.stringify({ date: today, data: r }));
+          setLastUpdated(new Date());
+          localStorage.setItem(STORAGE_KEY, JSON.stringify({ date: today, ts: new Date().toISOString(), data: r }));
           setError(null);
           return; // success
         } catch (err) {
@@ -101,5 +104,5 @@ export default function useExchangeRates(base) {
     fetchRates();
   }, [base]);
 
-  return { rates, loading, error };
+  return { rates, loading, error, lastUpdated };
 }

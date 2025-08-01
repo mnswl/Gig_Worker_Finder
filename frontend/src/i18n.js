@@ -9,6 +9,11 @@ const resources = {
       myProfile: 'My Profile',
       about: 'About',
       chat: 'Chat',
+      currencyConverter: 'Currency Converter',
+      amount: 'Amount',
+      from: 'From',
+      to: 'To',
+      loading: 'Loading exchange rates...',
       logout: 'Logout',
       login: 'Login',
       signUp: 'Sign Up',
@@ -343,6 +348,11 @@ const resources = {
       myProfile: 'මගේ පැතිකඩ',
       about: 'පිළිබඳව',
       chat: 'සංවාදය',
+      currencyConverter: 'මුදල් පරිවර්තකය',
+      amount: 'මුදල',
+      from: 'සිට',
+      to: 'වෙත',
+      loading: 'විනිමය මිල ගණන් ලබා ගනිමින්...',
       logout: 'පිටවීම',
       login: 'ඇතුළු වන්න',
       signUp: 'ලියාපදිංචි වන්න',
@@ -694,7 +704,7 @@ const resources = {
 // Remove Tamil language resources as per latest requirement
 delete resources.ta;
 
-// Ensure Sinhala has all keys present in English. For any missing key, copy English value (temporary fallback)
+      // Ensure Sinhala has all keys present in English. For any missing key, copy English value (temporary fallback)
 Object.keys(resources.en.translation).forEach((k) => {
   if (!resources.si.translation[k]) {
     resources.si.translation[k] = resources.en.translation[k];

@@ -64,6 +64,7 @@ const chatRoutes = require('./routes/chat');
 const userRoutes = require('./routes/users');
 const adminRoutes = require('./routes/admin');
 const statsRoutes = require('./routes/stats');
+const aiRoutes = require('./routes/ai');
 
 // Use routes
 app.use('/api/auth', authRoutes);
@@ -72,6 +73,7 @@ app.use('/api/chat', chatRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/stats', statsRoutes);
+app.use('/api/ai', aiRoutes);
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, {

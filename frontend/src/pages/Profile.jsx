@@ -185,6 +185,13 @@ function Profile() {
     }
   }, [activeTab]);
 
+  // Redirect to login if no auth token, without triggering setState during render
+  useEffect(() => {
+    if (!localStorage.getItem('token')) {
+      navigate('/login', { replace: true });
+    }
+  }, [navigate]);
+
   const handleAvatarClick = () => setShowAvatarPicker(true);
 
   const handleAvatarChange = async (e) => {
@@ -225,8 +232,7 @@ function Profile() {
   };
 
   if (!localStorage.getItem('token')) {
-    navigate('/login');
-    return null;
+    return null; // redirect handled via effect to avoid setState in render
   }
 
   if (!user) return <p className="container mt-4">Loading profile...</p>;

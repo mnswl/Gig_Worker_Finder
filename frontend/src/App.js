@@ -10,6 +10,7 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import ThemeToggle from './components/ThemeToggle';
 import GlassmorphicNav from './components/GlassmorphicNav';
 import ScrollToTop from './components/ScrollToTop';
+import ChatWidget from './components/ChatWidget';
 import CursorAura from './components/CursorAura';
 import RouteLoader from './components/RouteLoader';
 import { bounce } from './utils/animations';
@@ -150,6 +151,7 @@ function App() {
             <AnimatedRoutes />
           </Suspense>
           <ScrollToTop />
+          <ChatWidget />
         </BrowserRouter>
         <ToastContainer position="top-right" autoClose={5000} />
       </div>

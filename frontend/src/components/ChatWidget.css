@@ -1,0 +1,50 @@
+/* Chat widget button styling */
+.chat-widget-button {
+  position: fixed !important;
+  bottom: 5rem !important;
+  right: 1rem !important;
+  left: unset !important;
+  z-index: 9999 !important;
+
+  width: 56px !important;
+  height: 56px !important;
+  background: #2563eb !important; /* blue-600 */
+  border-radius: 50% !important;
+  color: #ffffff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+.chat-widget-button:hover {
+  transform: scale(1.08) !important;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.35) !important;
+}
+
+.chat-widget-window {
+  position: fixed !important;
+  bottom: 5rem !important;
+  right: 1rem !important;
+  left: unset !important;
+  z-index: 9999 !important;
+}
+
+@media (min-width: 640px) {
+  .chat-widget-button {
+    bottom: 5.5rem !important;
+    right: 1.5rem !important;
+  }
+
+  .chat-widget-button {
+    bottom: 5.5rem !important;
+    right: 1.5rem !important;
+  }
+  
+  .chat-widget-window {
+    bottom: 5.5rem !important;
+    right: 1.5rem !important;
+  }
+}

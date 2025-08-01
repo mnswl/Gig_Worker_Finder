@@ -1,4 +1,5 @@
 import { useEffect, useState, useMemo, useRef, useCallback } from 'react';
+import { BookmarkIcon as BookmarkSolid } from '@heroicons/react/24/solid';
 import { animateJobCardEntrance, jobCardHover, setupJobCardScrollReveal } from '../animations/jobCard';
 import { initButtonRipple } from '../animations/buttonRipple';
 import useExchangeRates from '../hooks/useExchangeRates';
@@ -94,6 +95,11 @@ function Dashboard() {
     }
     return res;
   }, [jobs, search, typeFilter, remoteOnly, hiddenIds, hiddenOnly, bookmarkedOnly, bookmarkedIds]);
+
+  // Derived flags for selection toolbar
+  const allApplied = selectedIds.length > 0 && selectedIds.every(id => applied.includes(id));
+  const allHiddenSelected = selectedIds.length > 0 && selectedIds.every(id => hiddenIds.includes(id));
+  const allBookmarkedSelected = selectedIds.length > 0 && selectedIds.every(id => bookmarkedIds.includes(id));
 
   const sortedJobs = useMemo(() => {
     const arr = [...filteredJobs];
@@ -273,13 +279,36 @@ function Dashboard() {
         setApplied(prev=>[...prev,id]);
       }catch(err){ toast.error(err.response?.data?.msg||'Apply failed'); }
     }
+    toast.success('Applied');
     setSelectedIds([]);
   };
+
+  const handleBulkUnapply = async () => {
+    const targets = selectedIds.filter(id => applied.includes(id));
+    if (targets.length === 0) { toast.info(t('alreadyApplied')); return; }
+    for (const id of targets) {
+      try {
+        await api.post(`/jobs/${id}/unapply`);
+        setApplied(prev => prev.filter(aid => aid !== id));
+      } catch (err) {
+        toast.error(err.response?.data?.msg || 'Unapply failed');
+      }
+    }
+    toast.success('Unapplied');
+    setSelectedIds([]);
+  };
+
   const handleBulkBookmark = () => {
     setBookmarkedIds(prev=> Array.from(new Set([...prev, ...selectedIds])));
     toast.success('Bookmarked');
     setSelectedIds([]);
   };
+  const handleBulkUnbookmark = () => {
+    setBookmarkedIds(prev => prev.filter(id => !selectedIds.includes(id)));
+    toast.success('Unbookmarked');
+    setSelectedIds([]);
+  };
+
   const handleBulkHide = () => {
     setHiddenIds(prev=> Array.from(new Set([...prev, ...selectedIds])));
     toast.info('Hidden');
@@ -421,13 +450,27 @@ function Dashboard() {
         </div>
       </div>
       {selectedIds.length>0 && (
-        <div className="alert alert-info d-flex flex-wrap gap-2 align-items-center">
+        <div className="selection-bar d-flex flex-wrap gap-2 align-items-center">
           <strong>{t('selected',{count:selectedIds.length})}</strong>
-          {role === 'worker' && <button className="btn btn-sm btn-primary" onClick={handleBulkApply}>{t('apply')}</button>}
-          <button className="btn btn-sm btn-outline-secondary" onClick={handleBulkBookmark}>{t('bookmark')}</button>
-          <button className="btn btn-sm btn-outline-danger" onClick={handleBulkHide}>{t('hide')}</button>
-          <button className="btn btn-sm btn-outline-success" onClick={handleBulkUnhide}>{t('unhide')}</button>
-          <button className="btn btn-sm btn-link" onClick={()=>setSelectedIds([])}>{t('clear')}</button>
+          {role === 'worker' && !allApplied && (
+            <button className="toolbar-btn primary" onClick={handleBulkApply}>{t('apply')}</button>
+          )}
+          {role === 'worker' && allApplied && (
+            <button className="toolbar-btn secondary" onClick={handleBulkUnapply}>{t('unapply')}</button>
+          )}
+          {!allBookmarkedSelected && (
+            <button className="toolbar-btn secondary" onClick={handleBulkBookmark}>{t('bookmark')}</button>
+          )}
+          {allBookmarkedSelected && (
+            <button className="toolbar-btn secondary" onClick={handleBulkUnbookmark}>Unbookmark</button>
+          )}
+          {!allHiddenSelected && (
+            <button className="toolbar-btn danger" onClick={handleBulkHide}>{t('hide')}</button>
+          )}
+          {allHiddenSelected && (
+            <button className="toolbar-btn success" onClick={handleBulkUnhide}>{t('unhide')}</button>
+          )}
+          <button className="toolbar-btn link" onClick={()=>setSelectedIds([])}>{t('clear')}</button>
         </div>
       )}
       {sortedJobs.length === 0 ? (
@@ -435,11 +478,11 @@ function Dashboard() {
       ) : (
         <ul className={`list-unstyled row ${dense ? 'row-cols-1 g-0' : 'row-cols-1 row-cols-md-2 row-cols-lg-3 g-4'}`}>
           {currentJobs.map((job) => (
-            <li key={job._id} tabIndex="0" className={`col job-card card h-100 ${dense ? 'compact ' : ''}job-type-${job.type}`} onMouseEnter={e=>jobCardHover(true, e.currentTarget)} onMouseLeave={e=>jobCardHover(false, e.currentTarget)}>
+            <li key={job._id} tabIndex="0" className={`col job-card card h-100 ${dense ? 'compact ' : ''}job-type-${job.type} ${bookmarkedIds.includes(job._id) ? 'bookmarked' : ''}` } onMouseEnter={e=>jobCardHover(true, e.currentTarget)} onMouseLeave={e=>jobCardHover(false, e.currentTarget)}>
               <div className="card-body w-100 d-flex flex-column align-items-center text-center">
                 <h5 className="mb-1 d-flex align-items-center gap-2">
                       <input type="checkbox" className="form-check-input me-2" checked={selectedIds.includes(job._id)} onChange={e=>setSelectedIds(prev=> e.target.checked ? [...prev, job._id] : prev.filter(id=>id!==job._id))} />
-                  {job.title}
+                  {job.title}{bookmarkedIds.includes(job._id) && (<BookmarkSolid className="bookmark-icon text-warning ms-1" aria-label="Bookmarked" style={{width:'1rem',height:'1rem'}} />)}
                 </h5>
                 <div className="mb-2">
                   {(() => {
@@ -502,7 +545,7 @@ function Dashboard() {
                )}
 
                <div className="mt-auto d-flex flex-column align-items-center gap-2 w-100">
-                  <button className="btn btn-sm btn-outline-secondary" onClick={()=>{
+                  <button className="toolbar-btn secondary" onClick={()=>{
                     setExpanded(prev=> prev.includes(job._id) ? prev.filter(id=>id!==job._id) : [...prev, job._id]);
                   }}>{expanded.includes(job._id) ? t('hide') : t('details')}</button>
                 </div>
@@ -541,8 +584,8 @@ function Dashboard() {
                        } catch(err) { toast.error(err.response?.data?.msg || 'Failed to fetch'); }
                   }}>Applicants</button>
                   <span className="badge bg-primary rounded-pill">{job.type}</span>
-                  <button className="btn btn-sm btn-outline-secondary" onClick={() => { setEditingId(job._id); setForm({ title: job.title, description: job.description, location: job.location, pay: job.pay, currency: job.currency || userCurrency, type: job.type, schedule: job.schedule || '' }); }}>Edit</button>
-                  <button className="btn btn-sm btn-outline-danger" onClick={async () => {
+                  <button className="toolbar-btn secondary" onClick={() => { setEditingId(job._id); setForm({ title: job.title, description: job.description, location: job.location, pay: job.pay, currency: job.currency || userCurrency, type: job.type, schedule: job.schedule || '' }); }}>Edit</button>
+                  <button className="toolbar-btn danger" onClick={async () => {
                     if (!window.confirm('Delete this job?')) return;
                     try {
                       await api.delete(`/jobs/${job._id}`);
@@ -601,7 +644,7 @@ function Dashboard() {
                                 </div>
                               )}
                            <div className="d-flex gap-1 mt-2">
-                              <button className="btn btn-sm btn-outline-success" onClick={async()=>{
+                              <button className="toolbar-btn success" onClick={async()=>{
                                 try { 
                                   const msg = window.prompt('Optional message to applicant (leave blank for none):','');
                                   await api.put(`/jobs/${job._id}/applicants/${a._id}`, { status: 'accepted', message: msg });
@@ -610,7 +653,7 @@ function Dashboard() {
                                   setApplicants(prev=>prev.map(p=>p._id===a._id?{...p,status:'accepted'}:p)); 
                                 } catch(err){toast.error(err.response?.data?.msg||'Err');}
                               }}>Accept</button>
-                              <button className="btn btn-sm btn-outline-danger" onClick={async()=>{
+                              <button className="toolbar-btn danger" onClick={async()=>{
                                 try { 
                                   const msg = window.prompt('Optional message to applicant (leave blank for none):','');
                                   await api.put(`/jobs/${job._id}/applicants/${a._id}`, { status: 'rejected', message: msg });
@@ -618,7 +661,7 @@ function Dashboard() {
                                   setApplicants(prev=>prev.map(p=>p._id===a._id?{...p,status:'rejected'}:p)); 
                                 } catch(err){toast.error(err.response?.data?.msg||'Err');}
                               }}>Reject</button>
-                              <button className="btn btn-sm btn-outline-secondary" onClick={async()=>{
+                              <button className="toolbar-btn secondary" onClick={async()=>{
                                 try { 
                                   const msg = window.prompt('Optional message to applicant (leave blank for none):','');
                                   await api.put(`/jobs/${job._id}/applicants/${a._id}`, { status: 'bookmarked', message: msg });

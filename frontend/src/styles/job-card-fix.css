@@ -40,6 +40,116 @@ body.dark .job-card input[type="checkbox"] {
   border-radius: 3px !important;
 }
 
+/* Modern custom checkbox styling */
+.job-card input[type="checkbox"] {
+  /* reset */
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  display: inline-block !important;
+  cursor: pointer !important;
+  position: relative !important;
+  margin: 0 0.5rem 0 0 !important;
+  border: 2px solid var(--tw-ring-color, #64748b) !important; /* gray-500 default */
+  border-radius: 4px !important;
+  background: transparent !important;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+body.dark .job-card input[type="checkbox"] {
+  border-color: #4b5563 !important; /* gray-600 */
+}
+
+.job-card input[type="checkbox"]:focus-visible {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.4) !important; /* indigo ring */
+}
+
+.job-card input[type="checkbox"]::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  background: var(--checkbox-check, #ffffff);
+  mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='3.5 9 6.5 12 12.5 5' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='3.5 9 6.5 12 12.5 5' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
+  transform: scale(0);
+  transition: transform 0.2s ease;
+}
+
+.job-card input[type="checkbox"]:checked {
+  background-color: #4f46e5 !important; /* indigo-600 */
+  border-color: #4f46e5 !important;
+}
+
+body.dark .job-card input[type="checkbox"]:checked {
+  background-color: #22d3ee !important; /* cyan-400 */
+  border-color: #22d3ee !important;
+}
+
+.job-card input[type="checkbox"]:checked::after {
+  transform: scale(1);
+}
+
+/* size override for compact view */
+.job-card.compact input[type="checkbox"] {
+  width: 14px !important;
+  height: 14px !important;
+  margin-right: 0.4rem !important;
+}
+
+/* end modern checkbox */
+
+/* ===== Selection Bar (bulk actions) ==== */
+.selection-bar {
+  background: rgba(30, 41, 59, 0.9); /* slate-800/90 for dark base */
+  color: #f1f5f9; /* slate-100 */
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+body:not(.dark) .selection-bar {
+  background: rgba(226, 232, 240, 0.95); /* slate-200/95 */
+  color: #1e293b; /* slate-800 */
+}
+
+/* Toolbar buttons */
+.toolbar-btn {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.35rem 0.85rem;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+}
+.toolbar-btn:hover { transform: translateY(-1px); }
+.toolbar-btn:active { transform: translateY(0); }
+
+.toolbar-btn.primary { background: #6366f1; color:#fff; }
+.toolbar-btn.primary:hover { background:#4f46e5; }
+
+.toolbar-btn.secondary { background: transparent; color:#475569; border-color:#cbd5e1; }
+body.dark .toolbar-btn.secondary { color:#cbd5e1; border-color:#475569; }
+.toolbar-btn.secondary:hover { background:#cbd5e1; color:#1e293b; }
+body.dark .toolbar-btn.secondary:hover { background:#475569; color:#f8fafc; }
+
+.toolbar-btn.success { background: transparent; color:#16a34a; border-color:#4ade80; }
+.toolbar-btn.success:hover { background:#4ade80; color:#064e3b; }
+
+.toolbar-btn.danger { background: transparent; color:#dc2626; border-color:#f87171; }
+.toolbar-btn.danger:hover { background:#f87171; color:#7f1d1d; }
+
+.toolbar-btn.link { background: none; color: #64748b; border: none; text-decoration: underline; padding: 0.35rem 0.5rem; }
+.toolbar-btn.link:hover { color:#334155; }
+
+/* Compact view size adjust */
+.job-card.compact ~ .selection-bar .toolbar-btn {
+  font-size: 0.7rem;
+  padding: 0.25rem 0.6rem;
+}
+/* ===== End Selection Bar Styles ==== */
+
 /* Common checkbox tweaks */
 .job-card input[type="checkbox"] {
   position: relative !important;
@@ -272,6 +382,26 @@ body:not(.dark) .job-card.compact {
   transform: translateY(-4px) scale(1.02) !important;
   transition: all 0.3s ease !important;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Mark bookmarked job cards */
+.job-card.bookmarked {
+  border: 2px solid #facc15 !important; /* yellow-400 */
+}
+
+body:not(.dark) .job-card.bookmarked {
+  border-color: #facc15 !important;
+  box-shadow: 0 0 0 2px rgba(250, 204, 21, 0.3) !important;
+}
+
+body.dark .job-card.bookmarked {
+  border-color: #eab308 !important; /* yellow-500 */
+  box-shadow: 0 0 0 2px rgba(234, 179, 8, 0.4) !important;
+}
+
+/* Compact view highlight */
+.job-card.compact.bookmarked {
+  background: rgba(250, 204, 21, 0.15) !important;
 }
 
 /* Dark mode specific fixes */

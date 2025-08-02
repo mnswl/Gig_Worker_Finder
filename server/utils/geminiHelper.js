@@ -8,14 +8,16 @@ const { GoogleGenerativeAI } = require('@google/generative-ai');
 // Ordered list of Gemini models to try (modify as needed)
 const MODEL_PRIORITY = [
   'gemini-1.5-flash', // fast & cheap
-  'gemini-pro',       // robust
-  'gemini-1.0-pro',   // legacy fallback
+  'gemini-1.0-pro',   // robust
+  'gemini-1.0-pro', // fallback
 ];
 
-let genAI = null;
-if (process.env.GEMINI_API_KEY) {
-  genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-}
+// Provide multiple keys by comma-separating them in GEMINI_API_KEY
+// e.g. GEMINI_API_KEY="key_one,key_two,key_three"
+const API_KEYS = (process.env.GEMINI_API_KEY || '')
+  .split(',')
+  .map(k => k.trim())
+  .filter(Boolean);
 
 /**
  * Generate a response using Gemini with automatic model fallback.
@@ -24,28 +26,33 @@ if (process.env.GEMINI_API_KEY) {
  * @returns {Promise<string>} Assistant reply text.
  */
 async function generateGeminiResponse(prompt, models = MODEL_PRIORITY) {
-  if (!genAI) {
-    throw new Error('Gemini API key not configured');
+  if (API_KEYS.length === 0) {
+    throw new Error('No Gemini API keys configured');
   }
 
-  for (const modelName of models) {
-    try {
-      const model = genAI.getGenerativeModel({ model: modelName });
-      const resp = await model.generateContent(prompt);
-      const text = resp?.response?.text()?.trim();
-      if (text) return text;
-    } catch (err) {
-      const status = err?.status || err?.code || err?.response?.status;
-      const quotaError = status === 429 || status === 403 || /exceed/i.test(err.message);
-      if (quotaError) {
-        // Try next model in the list
-        continue;
+  for (const apiKey of API_KEYS) {
+    const genAI = new GoogleGenerativeAI(apiKey);
+    for (const modelName of models) {
+      try {
+        const model = genAI.getGenerativeModel({ model: modelName });
+        console.log(`[Gemini] Using model ${modelName} with key ****${apiKey.slice(-4)}`);
+        const resp = await model.generateContent(prompt);
+        const text = resp?.response?.text()?.trim();
+        if (text) return text;
+      } catch (err) {
+        const status = err?.status || err?.code || err?.response?.status;
+        const quotaError = status === 429 || status === 403;
+        const unsupported = status === 404;
+        if (quotaError || unsupported) {
+          // Move on to next model or key
+          continue;
+        }
+        // Unknown error — surface it up
+        throw err;
       }
-      // Unknown error – rethrow
-      throw err;
     }
   }
-  throw new Error('All Gemini models exhausted their quota.');
+  throw new Error('All Gemini API keys/models are out of quota.');
 }
 
 module.exports = { generateGeminiResponse, MODEL_PRIORITY };

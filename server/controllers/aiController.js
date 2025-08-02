@@ -2,15 +2,11 @@ const OpenAI = require('openai');
 
 // Initialise OpenAI once; reuse for all requests
 let openai = null;
-const { GoogleGenerativeAI } = require('@google/generative-ai');
-let gemini = null;
+const { generateGeminiResponse } = require('../utils/geminiHelper');
 if (process.env.OPENAI_API_KEY) {
   openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 }
-if (process.env.GEMINI_API_KEY) {
-  const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-  gemini = genAI.getGenerativeModel({ model: process.env.GEMINI_MODEL || 'gemini-1.5-flash' });
-}
+
 
 /**
  * POST /api/ai/chat
@@ -18,7 +14,7 @@ if (process.env.GEMINI_API_KEY) {
  * Returns: { reply: { role, content } }
  */
 exports.aiChat = async (req, res) => {
-  if (!openai && !gemini) {
+  if (!openai && !process.env.GEMINI_API_KEY) {
     return res.status(503).json({ error: 'AI service not configured (no provider keys set)' });
   }
   const { messages } = req.body || {};
@@ -47,11 +43,10 @@ exports.aiChat = async (req, res) => {
         if (!gemini) throw openErr; // rethrow if no fallback
       }
     }
-    if (!reply && gemini) {
-      // Gemini fallback or primary
+    if (!reply && process.env.GEMINI_API_KEY) {
+      // Gemini primary or fallback with automatic model fallback chain
       const historyText = payload.map(m => `${m.role.toUpperCase()}: ${m.content}`).join('\n');
-      const geminiResp = await gemini.generateContent(historyText);
-      const text = geminiResp.response.text().trim();
+      const text = await generateGeminiResponse(historyText);
       reply = { role: 'assistant', content: text };
     }
     res.json({ reply });

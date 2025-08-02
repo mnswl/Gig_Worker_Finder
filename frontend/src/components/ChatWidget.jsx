@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { PaperAirplaneIcon, XMarkIcon } from '@heroicons/react/24/solid';
+import { PaperAirplaneIcon, EllipsisHorizontalIcon } from '@heroicons/react/24/solid';
 import api from '../api';
 import './ChatWidget.css';
 
@@ -66,32 +66,64 @@ export default function ChatWidget() {
 
       {/* Chat window */}
       {open && (
-        <div className="chat-widget-window fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-50 w-80 md:w-96 h-[28rem] bg-transparent shadow-2xl rounded-2xl flex flex-col border border-gray-200/70 dark:border-gray-700/70 backdrop-blur-lg" >
-          <div className="flex justify-between items-center p-3 border-b dark:border-gray-700 bg-transparent rounded-t-2xl backdrop-blur">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <h3 className="font-semibold text-gray-800 dark:text-gray-100 text-sm">AI Assistant</h3>
+        <div
+          className="chat-widget-window fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-50 w-96 h-[26rem] bg-white/50 dark:bg-gray-900/60 border-4 border-blue-600 dark:border-blue-400 outline outline-2 outline-blue-500/50 ring-0 shadow-[0_16px_48px_rgba(0,0,0,0.25)] rounded-xl overflow-hidden flex flex-col backdrop-blur-3xl backdrop-saturate-150 backdrop-brightness-110"
+          style={{ backdropFilter: 'blur(30px) saturate(180%)', WebkitBackdropFilter: 'blur(30px) saturate(180%)' }}
+        >
+          
+          
+          <div className="relative z-10 flex items-center justify-between px-4 py-2 bg-white/90 dark:bg-gray-900/80">
+            <div className="relative flex items-center gap-2">
+              <EllipsisHorizontalIcon className="h-5 w-5 text-gray-400" />
+              <h3 className="font-semibold text-gray-800 dark:text-gray-100 text-sm">AI ChatBot</h3>
             </div>
-            <button onClick={() => setOpen(false)} className="text-gray-500 hover:text-gray-800 dark:hover:text-gray-200">
-              <XMarkIcon className="h-5 w-5" />
+            <button onClick={() => setOpen(false)} className="chat-widget-close" aria-label="Close chat">
+              <span className="block w-4 h-4 relative">
+                <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-0.5 bg-gray-700 dark:bg-gray-200"></span>
+                <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-0.5 h-2 bg-gray-700 dark:bg-gray-200"></span>
+              </span>
             </button>
           </div>
-          <div className="flex-1 overflow-y-auto p-3 space-y-2 text-sm">
+          <div className="relative z-10 flex-1 overflow-y-auto p-3 space-y-2 text-sm">
             {messages.map((m, idx) => (
-              <div key={idx} className={`whitespace-pre-wrap ${m.role === 'user' ? 'text-right' : 'text-left'}`}>
-                <span className={m.role === 'user' ? 'bg-gradient-to-br from-emerald-500 to-emerald-600 text-white rounded-xl px-3 py-2 inline-block shadow' : 'bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-800 dark:to-blue-700 text-gray-800 dark:text-gray-100 rounded-xl px-3 py-2 inline-block shadow-sm'}>
-                  {m.content}
-                </span>
+              <div key={idx} className={`flex w-full mb-3 ${m.role === 'user' ? 'flex-row-reverse' : ''}`}>
+                {m.role === 'assistant' && (
+                  <div className="relative flex items-center gap-2">
+                    <div className="flex items-start w-full gap-2">
+                      <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white text-sm font-bold shadow">
+                        🤖
+                      </div>
+                      <div className="bg-gradient-to-br from-indigo-500 via-sky-500 to-blue-500 text-white rounded-2xl rounded-tl-none shadow px-4 py-2 max-w-[70%]">
+                        {m.content}
+                      </div>
+                    </div>
+                    <div className="ml-10 mt-1">
+                      <span className="ai-badge inline-flex items-center gap-1 px-2 py-1">
+                        ✨ Answered by AI
+                      </span>
+                    </div>
+                  </div>
+                )}
+                {m.role === 'user' && (
+                  <div className="relative flex items-center gap-2">
+                    <div className="bg-white text-gray-900 dark:bg-gray-800/70 dark:text-gray-100 rounded-2xl rounded-tr-none shadow px-4 py-2 max-w-[70%]">
+                      {m.content}
+                    </div>
+                    <div className="w-8 h-8 rounded-full bg-orange-400 flex items-center justify-center text-white text-sm font-bold shadow">
+                      👤
+                    </div>
+                  </div>
+                )}
               </div>
             ))}
             {loading && <p className="text-gray-400 text-xs">Assistant is typing…</p>}
             <div ref={bottomRef} />
           </div>
-          <div className="p-3 bg-gray-50 dark:bg-gray-800 border-t dark:border-gray-700 rounded-b-2xl">
-            <div className="flex items-center gap-2">
+          <div className="relative z-10 mt-auto p-3 bg-gray-50 dark:bg-gray-800 border-t dark:border-gray-700 rounded-b-2xl">
+            <div className="flex items-center w-full gap-2">
               <input
                 type="text"
-                className="flex-1 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-full px-4 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+                className="flex-1 bg-white/90 dark:bg-gray-800/80 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-500 rounded-full px-4 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
                 placeholder="Ask me anything..."
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
@@ -101,16 +133,17 @@ export default function ChatWidget() {
               />
               <button
                 onClick={send}
-                disabled={loading}
-                className="bg-emerald-500 hover:bg-emerald-600 disabled:opacity-50 text-white p-2 rounded-full shadow-md transition"
+                disabled={loading || !input.trim()}
+                className="chat-widget-send disabled:opacity-60"
                 aria-label="Send message"
               >
-                <PaperAirplaneIcon className="h-5 w-5 rotate-90 -translate-y-px" />
+                <PaperAirplaneIcon className="plane-svg text-white" />
               </button>
-            </div>
+                
           </div>
         </div>
-      )}
+      </div>
+       )}
     </>
   );
 }

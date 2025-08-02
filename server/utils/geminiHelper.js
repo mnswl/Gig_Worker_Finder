@@ -8,8 +8,6 @@ const { GoogleGenerativeAI } = require('@google/generative-ai');
 // Ordered list of Gemini models to try (modify as needed)
 const MODEL_PRIORITY = [
   'gemini-1.5-flash', // fast & cheap
-  'gemini-1.0-pro',   // robust
-  'gemini-1.0-pro', // fallback
 ];
 
 // Provide multiple keys by comma-separating them in GEMINI_API_KEY

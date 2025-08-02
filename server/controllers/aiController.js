@@ -40,7 +40,7 @@ exports.aiChat = async (req, res) => {
         reply = completion.choices[0].message;
       } catch (openErr) {
         console.warn('OpenAI failed, trying Gemini if available', openErr?.message || openErr);
-        if (!gemini) throw openErr; // rethrow if no fallback
+        // proceed to Gemini fallback
       }
     }
     if (!reply && process.env.GEMINI_API_KEY) {

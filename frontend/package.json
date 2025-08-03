@@ -31,8 +31,9 @@
   },
   "scripts": {
     "dev": "react-scripts start",
-    "start": "react-scripts build && npx serve -s build -l $PORT",
+    "start": "npx serve -s build -p $PORT",
     "build": "react-scripts build",
+    "railway-build": "npm install --legacy-peer-deps && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },

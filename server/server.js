@@ -9,7 +9,7 @@ const jwt = require('jsonwebtoken');
 const app = express();
 
 // Allowed origins list (comma-separated env var)
-const ALLOWED_ORIGINS = (process.env.CORS_ORIGINS || 'https://gigworkerfinder-production.up.railway.app,https://gigworkerfinder-production-07e4.up.railway.app')
+const ALLOWED_ORIGINS = (process.env.CORS_ORIGINS || 'https://gig-worker-finder-frontend.onrender.com,https://gigworkerfinder-production.up.railway.app,https://gigworkerfinder-production-07e4.up.railway.app')
   .split(',')
   .map(o => o.trim())
   .filter(Boolean);

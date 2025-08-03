@@ -15,6 +15,16 @@ import { socket, connectSocket } from '../socket';
 import { currencies } from '../data/options';
 
 function Dashboard() {
+  // Helper: add or update job without duplicates
+  const upsertJob = (prevArr, job) => {
+    const idx = prevArr.findIndex(j => j._id === job._id);
+    if (idx !== -1) {
+      const arr = [...prevArr];
+      arr[idx] = job;
+      return arr;
+    }
+    return [job, ...prevArr];
+  };
   const [jobs, setJobs] = useState([]);
   const publishBtnRef = useRef(null);
   // apply stagger once jobs change length
@@ -186,7 +196,16 @@ function Dashboard() {
           const appliedIds = jobsData.filter(j => j.applicants && j.applicants.some(a => (a.user?._id || a.user) === uid)).map(j=>j._id);
           setApplied(appliedIds);
         }
-        setJobs(jobsData);
+        // Deduplicate jobs by _id to avoid React key warnings
+    const uniqueJobs = [];
+    const seenJobIds = new Set();
+    for (const j of jobsData) {
+      if (!j?._id) continue;
+      if (seenJobIds.has(j._id)) continue;
+      seenJobIds.add(j._id);
+      uniqueJobs.push(j);
+    }
+    setJobs(uniqueJobs);
       } catch (err) {
         console.error(err);
       }
@@ -201,7 +220,7 @@ function Dashboard() {
     socket.on('newJob', ({ job }) => {
        if(role==='worker' && job.status!=='approved') return;
        if(role==='employer' && job.employer?._id!==myId && job.status!=='approved') return;
-       setJobs(prev => [{ ...job }, ...prev]);
+       setJobs(prev => upsertJob(prev, job));
       if (role !== 'employer') {
         toast.info(`New job posted: ${job.title}`);
         setAlerts(prev=>[...prev,{id:Date.now(),text:`New job posted: ${job.title}`,variant:'info'}]);
@@ -240,7 +259,7 @@ function Dashboard() {
     socket.on('newJob', ({ job }) => {
       if(role==='worker' && job.status!=='approved') return;
       if(role==='employer' && job.employer?._id!==myId && job.status!=='approved') return;
-      setJobs(prev => [{ ...job }, ...prev]);
+      setJobs(prev => upsertJob(prev, job));
     });
     socket.on('jobUpdated', ({ jobId, job }) => {
       setJobs(prev => {
@@ -344,7 +363,7 @@ function Dashboard() {
               try {
                 const res = await api.post('/jobs', { ...form, pay: Number(form.pay) });
                 const { job: newJob, aiSuggestion } = res.data;
-                setJobs(prev => [{ ...newJob, currency: newJob.currency || form.currency }, ...prev]);
+                setJobs(prev => upsertJob(prev, { ...newJob, currency: newJob.currency || form.currency }));
                 if (aiSuggestion) {
                   setPendingAiJob(newJob);
                   // Delay showing AI suggestion modal so the publish button pulse is visible

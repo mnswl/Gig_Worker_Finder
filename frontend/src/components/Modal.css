@@ -22,6 +22,28 @@
   overflow-y: auto;
 }
 
+/* Dark theme overrides */
+body.dark .gwf-modal {
+  background: #1e1e1e;
+  color: #f1f1f1;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.7);
+}
+body.dark .gwf-modal-header {
+  border-bottom-color: #444;
+}
+body.dark .gwf-modal .form-control {
+  background: #2a2a2a;
+  color: #f1f1f1;
+  border-color: #444;
+}
+
+/* Light theme explicit form-control tweaks */
+body:not(.dark) .gwf-modal .form-control {
+  background: #fff;
+  color: #212529;
+  border-color: #ced4da;
+}
+
 .gwf-modal-header {
   border-bottom: 1px solid #dee2e6;
   padding-bottom: 0.5rem;

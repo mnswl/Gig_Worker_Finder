@@ -92,6 +92,9 @@ exports.updateJob = async (req, res) => {
       return res.status(403).json({ msg: 'Not authorized' });
     }
     job = await Job.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+    // Notify connected clients of the updated job so dashboards update in real-time
+    const io = req.app.get('io');
+    if (io) io.emit('jobUpdated', { jobId: job._id.toString(), job });
     res.json(job);
   } catch (err) {
     console.error(err);

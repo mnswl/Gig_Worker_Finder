@@ -4,10 +4,8 @@ import { API_URL } from './config';
 const getSocketUrl = () => {
   if (process.env.REACT_APP_SOCKET_URL) return process.env.REACT_APP_SOCKET_URL;
   if (process.env.NODE_ENV === 'production') {
-    // Use the same origin as the page to avoid hard-coded ports in production (Railway maps ports)
-    const { protocol, host } = window.location;
-    const scheme = protocol === 'https:' ? 'wss' : 'ws';
-    return `${scheme}://${host}`;
+    // In production, connect to the backend URL, not the frontend URL
+    return 'https://gig-worker-finder-backend.onrender.com';
   }
   return API_URL;
 };

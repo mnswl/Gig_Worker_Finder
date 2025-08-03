@@ -5,14 +5,8 @@
 const OpenAI = require('openai');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 
-// Gemini (primary)
-let gemini = null;
-if (process.env.GEMINI_API_KEY) {
-  const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY, {
-    apiEndpoint: process.env.GEMINI_ENDPOINT || 'https://generativelanguage.googleapis.com/v1beta',
-  });
-  gemini = genAI.getGenerativeModel({ model: process.env.GEMINI_MODEL || 'models/gemini-pro' });
-}
+// Gemini helper (primary)
+const { generateGeminiResponse } = require('../../utils/geminiHelper');
 
 // Groq (secondary – OpenAI-compatible endpoint)
 let groq = null;
@@ -63,17 +57,14 @@ function tryParseJson(text) {
 async function improveDescription(job) {
   const prompt = buildPrompt(job);
 
-  // 1. Gemini (Google Generative AI)
-  if (gemini) {
-    try {
-      const result = await gemini.generateContent(prompt);
-      const text = result.response.text().trim();
-      const parsed = tryParseJson(text);
-      if (parsed) return parsed;
-      console.warn('Gemini response not JSON');
-    } catch (err) {
-      console.warn('Gemini failed:', err.message);
-    }
+  // 1. Gemini (Google Generative AI via helper)
+  try {
+    const text = await generateGeminiResponse(prompt);
+    const parsed = tryParseJson(text);
+    if (parsed) return parsed;
+    console.warn('Gemini response not JSON');
+  } catch (err) {
+    console.warn('Gemini failed:', err.message);
   }
 
   // 2. Groq fallback

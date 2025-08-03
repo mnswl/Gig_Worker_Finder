@@ -15,7 +15,14 @@ exports.getConversations = async (req, res) => {
     const map = new Map();
 
     msgs.forEach(m => {
-      const other = m.sender._id.equals(req.user.id) ? m.receiver : m.sender;
+      const selfId = req.user.id;
+      const from = m.sender;
+      const to = m.receiver;
+      const other = from && from._id?.equals(selfId) ? to : from;
+
+      // If the counterpart user no longer exists (e.g., account deleted), skip this message
+      if (!other) return;
+
       const key = other._id.toString();
       if (!map.has(key)) {
         map.set(key, {

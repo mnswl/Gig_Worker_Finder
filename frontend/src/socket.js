@@ -11,6 +11,8 @@ const getSocketUrl = () => {
 };
 
 const SOCKET_URL = getSocketUrl();
+console.log('Socket.IO connecting to:', SOCKET_URL);
+console.log('NODE_ENV:', process.env.NODE_ENV);
 
 export const socket = io(SOCKET_URL, {
   autoConnect: false,

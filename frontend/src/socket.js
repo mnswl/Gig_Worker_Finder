@@ -1,11 +1,18 @@
 import { io } from 'socket.io-client';
 import { API_URL } from './config';
 
-const SOCKET_URL =
-  process.env.REACT_APP_SOCKET_URL ||
-  (process.env.NODE_ENV === 'production'
-    ? 'https://gigworkerfinder-production.up.railway.app'
-    : API_URL);
+const getSocketUrl = () => {
+  if (process.env.REACT_APP_SOCKET_URL) return process.env.REACT_APP_SOCKET_URL;
+  if (process.env.NODE_ENV === 'production') {
+    // Use the same origin as the page to avoid hard-coded ports in production (Railway maps ports)
+    const { protocol, host } = window.location;
+    const scheme = protocol === 'https:' ? 'wss' : 'ws';
+    return `${scheme}://${host}`;
+  }
+  return API_URL;
+};
+
+const SOCKET_URL = getSocketUrl();
 
 export const socket = io(SOCKET_URL, {
   autoConnect: false,

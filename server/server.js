@@ -67,16 +67,24 @@ io.on('connection', (socket) => {
 });
 
 // Middleware – CORS first so every route gets the headers
+// Debug CORS origins
+console.log('ALLOWED_ORIGINS:', ALLOWED_ORIGINS);
+
 app.use(
   cors({
     origin: (origin, cb) => {
+      console.log('CORS request from origin:', origin);
       // Allow requests with no origin (like mobile apps or curl)
       if (!origin) return cb(null, true);
-      return cb(null, ALLOWED_ORIGINS.includes(origin));
+      const isAllowed = ALLOWED_ORIGINS.includes(origin);
+      console.log('Origin allowed:', isAllowed);
+      return cb(null, isAllowed);
     },
     credentials: true,
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
+    preflightContinue: false,
+    optionsSuccessStatus: 200
   }),
 );
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
